@@ -1,0 +1,8 @@
+
+spring:
+  profiles:
+    active: local
+
+cmis:
+  server:
+    url: http://localhost:8085
