@@ -20,7 +20,7 @@ public class DocumentController {
 
   @Autowired DocumentService documentService;
 
-  @PostMapping("/repository/{repositoryId}/folder/{folderId}")
+  @PostMapping("/repository/{repositoryId}/folder/{folderId}/documents")
   String createDocument(
       @PathVariable String repositoryId,
       @PathVariable String folderId,

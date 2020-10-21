@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 public class DocumentService {
 
   public String createDocument(String repositoryId, String folderId, Properties properties) {
-    String documentId = null;
+    String documentId = "333";
 
     return documentId;
   }

@@ -10,6 +10,7 @@ import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.time.Duration;
+import java.util.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,15 +27,24 @@ public class CmisClientService {
   private String baseurl;
 
   public void save(Folder folder) throws Exception {
+    sendPostRequest(baseurl + "/repository/1/folders", mapper.writeValueAsString(folder));
+    return;
+  }
 
-    String json = mapper.writeValueAsString(folder);
-    // System.out.println(json);
+  public String createDocument(String repositoryId, String folderId, Properties properties)
+      throws Exception {
+    HttpResponse<String> response = sendPostRequest(
+        baseurl + "/repository/" + repositoryId + "/folder/" + folderId + "/documents",
+        mapper.writeValueAsString(properties));
+    return response.body();
+  }
 
+  HttpResponse<String> sendPostRequest(String url, String json) throws Exception {
     HttpClient httpClient = HttpClient.newBuilder().version(Version.HTTP_2).build();
 
     HttpRequest request =
         HttpRequest.newBuilder()
-            .uri(URI.create(baseurl + "/repository/1/folders"))
+            .uri(URI.create(url))
             .timeout(Duration.ofMinutes(1))
             .header("Content-Type", "application/json")
             .POST(BodyPublishers.ofString(json))
@@ -45,7 +55,6 @@ public class CmisClientService {
     LOGGER.info("Response status code: " + response.statusCode());
     LOGGER.info("Response headers: " + response.headers());
     LOGGER.info("Response body: " + response.body());
-
-    return;
+    return response;
   }
 }
