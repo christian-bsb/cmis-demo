@@ -7,8 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DemoRepository implements Repository{
-
+public class DemoRepository implements Repository {
 
   TypeDefinitionRepository typeDefinitionRepository;
 
@@ -19,7 +18,7 @@ public class DemoRepository implements Repository{
 
   @Override
   public RepositoryInfo getInfo() {
-    RepositoryInfo info= new RepositoryInfo();
+    RepositoryInfo info = new RepositoryInfo();
     info.setId("1");
     info.setName("Demo");
     info.setDescription("Demo Repository");
@@ -40,6 +39,4 @@ public class DemoRepository implements Repository{
   public Folder createFolder(Folder folder) throws Exception {
     return folder;
   }
-
-
 }

@@ -8,9 +8,9 @@ public interface Repository {
 
   RepositoryInfo getInfo();
 
-  ObjectType createType( ObjectType objectType) throws Exception;
+  ObjectType createType(ObjectType objectType) throws Exception;
 
-  ObjectType getTypeDefinition( String typeId);
+  ObjectType getTypeDefinition(String typeId);
 
-  Folder createFolder( Folder folder) throws Exception;
+  Folder createFolder(Folder folder) throws Exception;
 }

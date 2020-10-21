@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmptyRepository implements Repository {
 
-
   @Override
   public RepositoryInfo getInfo() {
     return new RepositoryInfo("");
@@ -27,8 +26,5 @@ public class EmptyRepository implements Repository {
   @Override
   public Folder createFolder(Folder folder) throws Exception {
     throw new NoSuchMethodException();
-
   }
-
-
 }

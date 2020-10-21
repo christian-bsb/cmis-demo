@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class TypeDefinitionRepository {
 
-  Map<String,ObjectType> objectTypeMap = new HashMap<>();
+  Map<String, ObjectType> objectTypeMap = new HashMap<>();
 
   public TypeDefinitionRepository() {
     objectTypeMap.put("0", new ObjectType("0", "Empty Object Type"));

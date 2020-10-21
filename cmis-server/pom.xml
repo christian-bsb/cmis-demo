@@ -16,7 +16,8 @@
 
 	<properties>
 		<java.version>14</java.version>
-	</properties>
+    <version.maven-fmt-plugin>2.9</version.maven-fmt-plugin>
+  </properties>
 
 	<dependencies>
 		<dependency>
@@ -48,6 +49,18 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+      <plugin>
+        <groupId>com.coveo</groupId>
+        <artifactId>fmt-maven-plugin</artifactId>
+        <version>${version.maven-fmt-plugin}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>format</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
 		</plugins>
 	</build>
 

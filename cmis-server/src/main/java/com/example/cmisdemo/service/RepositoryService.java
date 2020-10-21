@@ -11,17 +11,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class RepositoryService {
 
-  @Autowired
-  RepositoryRepository repositoryRepository;
+  @Autowired RepositoryRepository repositoryRepository;
 
-  public RepositoryService() {
-  }
+  public RepositoryService() {}
 
-  public Repository getRepository( String id){
+  public Repository getRepository(String id) {
     return repositoryRepository.getRepository(id);
   }
 
-  public List<RepositoryInfo> getRepositoryInfos(){
-    return repositoryRepository.list().stream().map(Repository::getInfo).collect(Collectors.toList());
+  public List<RepositoryInfo> getRepositoryInfos() {
+    return repositoryRepository.list().stream()
+        .map(Repository::getInfo)
+        .collect(Collectors.toList());
   }
 }

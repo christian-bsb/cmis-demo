@@ -6,7 +6,6 @@ import com.example.cmisdemo.service.RepositoryService;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,8 +21,7 @@ public class MainController {
   private static final String template = "Hello, %s!";
   private final AtomicLong counter = new AtomicLong();
 
-  @Autowired
-  RepositoryService repositoryService;
+  @Autowired RepositoryService repositoryService;
 
   @GetMapping("/")
   public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
@@ -39,5 +37,4 @@ public class MainController {
   public List<RepositoryInfo> getRepositories() {
     return repositoryService.getRepositoryInfos();
   }
-
 }
