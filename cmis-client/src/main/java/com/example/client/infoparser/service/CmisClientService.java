@@ -33,9 +33,10 @@ public class CmisClientService {
 
   public String createDocument(String repositoryId, String folderId, Properties properties)
       throws Exception {
-    HttpResponse<String> response = sendPostRequest(
-        baseurl + "/repository/" + repositoryId + "/folder/" + folderId + "/documents",
-        mapper.writeValueAsString(properties));
+    HttpResponse<String> response =
+        sendPostRequest(
+            baseurl + "/repository/" + repositoryId + "/folder/" + folderId + "/documents",
+            mapper.writeValueAsString(properties));
     return response.body();
   }
 
