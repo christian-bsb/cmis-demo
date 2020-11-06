@@ -17,22 +17,22 @@ public class ObjectDefinitionController {
 
   private static Logger LOGGER = LoggerFactory.getLogger(ObjectDefinitionController.class);
 
-  @Autowired
-  ObjectDefinitionService objectDefinitionService;
+  @Autowired ObjectDefinitionService objectDefinitionService;
 
-  @Autowired
-  ObjectDefinitionDto objectDefinitionDto;
+  @Autowired ObjectDefinitionDto objectDefinitionDto;
 
   @PostMapping(
       path = "repository/{repositoryId}/object/insert",
       consumes = "application/json",
       produces = "application/json")
-  public ObjectType createObjectDefiniton(@PathVariable(value = "repositoryId") String repositoryId, @RequestBody ObjectType objectType) {
+  public ObjectType createObjectDefiniton(
+      @PathVariable(value = "repositoryId") String repositoryId,
+      @RequestBody ObjectType objectType) {
     LOGGER.info("insert object type {}", objectType.getDisplayName());
-    ObjectDefinitionEntity objectDefinitionEntity = objectDefinitionDto.objectTypeToObjectDefinitionEntity(objectType);
-    objectDefinitionEntity = objectDefinitionService.createObjectDefinition(repositoryId, objectDefinitionEntity);
+    ObjectDefinitionEntity objectDefinitionEntity =
+        objectDefinitionDto.objectTypeToObjectDefinitionEntity(objectType);
+    objectDefinitionEntity =
+        objectDefinitionService.createObjectDefinition(repositoryId, objectDefinitionEntity);
     return objectDefinitionDto.objectDefinitinEntityToObjectType(objectDefinitionEntity);
   }
-
-
 }

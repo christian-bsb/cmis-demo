@@ -14,8 +14,7 @@ Dependencies:
 @SpringBootApplication
 public class ObjectdefinitionServerApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ObjectdefinitionServerApplication.class, args);
-	}
-
+  public static void main(String[] args) {
+    SpringApplication.run(ObjectdefinitionServerApplication.class, args);
+  }
 }

@@ -22,8 +22,7 @@ public class ObjectDefinitionEntity {
   @OneToMany(mappedBy = "objectDefinition", cascade = CascadeType.ALL)
   List<PropertyDefinitionEntity> propertyDefinitions;
 
-  public ObjectDefinitionEntity() {
-  }
+  public ObjectDefinitionEntity() {}
 
   public Long getId() {
     return id;
