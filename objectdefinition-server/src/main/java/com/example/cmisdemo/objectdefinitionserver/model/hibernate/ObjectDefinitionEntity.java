@@ -46,14 +46,21 @@ public class ObjectDefinitionEntity {
 
   public void setPropertyDefinitions(List<PropertyDefinitionEntity> propertyDefinitions) {
     this.propertyDefinitions = propertyDefinitions;
+    for (PropertyDefinitionEntity prop : propertyDefinitions) {
+      prop.setObjectDefinition(this);
+    }
   }
 
   @Override
   public String toString() {
-    return "ObjectDefinitionEntity{" +
-           "id=" + id +
-           ", name='" + name + '\'' +
-           ", propertyDefinitions=" + propertyDefinitions +
-           '}';
+    return "ObjectDefinitionEntity{"
+        + "id="
+        + id
+        + ", name='"
+        + name
+        + '\''
+        + ", propertyDefinitions="
+        + propertyDefinitions
+        + '}';
   }
 }

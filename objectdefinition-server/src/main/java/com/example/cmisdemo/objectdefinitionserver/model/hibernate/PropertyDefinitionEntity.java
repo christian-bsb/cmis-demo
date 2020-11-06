@@ -1,9 +1,12 @@
 package com.example.cmisdemo.objectdefinitionserver.model.hibernate;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,7 +19,9 @@ public class PropertyDefinitionEntity {
 
   private String name;
 
-  private Integer objectDefinition;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "object_definition")
+  private ObjectDefinitionEntity objectDefinition;
 
   public PropertyDefinitionEntity() {}
 
@@ -36,11 +41,11 @@ public class PropertyDefinitionEntity {
     this.name = name;
   }
 
-  public Integer getObjectDefinition() {
+  public ObjectDefinitionEntity getObjectDefinition() {
     return objectDefinition;
   }
 
-  public void setObjectDefinition(Integer objectDefinition) {
+  public void setObjectDefinition(ObjectDefinitionEntity objectDefinition) {
     this.objectDefinition = objectDefinition;
   }
 }
