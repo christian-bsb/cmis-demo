@@ -1,6 +1,7 @@
 package com.example.client.infoparser.service;
 
 import com.example.cmisdemo.model.Folder;
+import com.example.cmisdemo.model.ObjectType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -37,6 +38,14 @@ public class CmisClientService {
         sendPostRequest(
             baseurl + "/repository/" + repositoryId + "/folder/" + folderId + "/documents",
             mapper.writeValueAsString(properties));
+    return response.body();
+  }
+
+  public String createObjectType(String repositoryId, ObjectType objectType) throws Exception {
+    HttpResponse<String> response =
+        sendPostRequest(
+            baseurl + "/repository/" + repositoryId + "/types",
+            mapper.writeValueAsString(objectType));
     return response.body();
   }
 

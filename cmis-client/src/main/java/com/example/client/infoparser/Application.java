@@ -1,8 +1,12 @@
 package com.example.client.infoparser;
 
 import com.example.client.infoparser.service.CmisClientService;
+import com.example.cmisdemo.model.Cardinality;
 import com.example.cmisdemo.model.Constants;
 import com.example.cmisdemo.model.Folder;
+import com.example.cmisdemo.model.ObjectType;
+import com.example.cmisdemo.model.PropertyDefinition;
+import com.example.cmisdemo.model.PropertyType;
 import java.util.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,9 +29,12 @@ public class Application implements CommandLineRunner {
   // access command line arguments
   @Override
   public void run(String... args) throws Exception {
+    ObjectType objectType = createObjectType();
+    System.out.println(objectType);
+
     // createFolder();
-    String documentId = createDocument();
-    LOGGER.info("document id =" + documentId);
+    // String documentId = createDocument();
+    // LOGGER.info("document id =" + documentId);
   }
 
   void createFolder() throws Exception {
@@ -44,5 +51,17 @@ public class Application implements CommandLineRunner {
     Properties properties = new Properties();
     properties.put(Constants.PARAM_PATH, "exampeDoc.txt");
     return cmisClientService.createDocument("1", "1", properties);
+  }
+
+  public ObjectType createObjectType() throws Exception {
+    ObjectType objectType = new ObjectType(null, "News");
+    objectType
+        .getPropertyDefinitions()
+        .add(new PropertyDefinition(null, "title", PropertyType.STRING, Cardinality.SINGLE));
+    objectType
+        .getPropertyDefinitions()
+        .add(new PropertyDefinition(null, "text", PropertyType.HTML, Cardinality.SINGLE));
+    cmisClientService.createObjectType("1", objectType);
+    return objectType;
   }
 }

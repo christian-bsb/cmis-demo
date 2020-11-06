@@ -9,6 +9,14 @@ public class PropertyDefinition {
 
   public PropertyDefinition() {}
 
+  public PropertyDefinition(
+      String id, String displayName, PropertyType propertyType, Cardinality cardinality) {
+    this.id = id;
+    this.displayName = displayName;
+    this.propertyType = propertyType;
+    this.cardinality = cardinality;
+  }
+
   public String getId() {
     return id;
   }
@@ -39,5 +47,21 @@ public class PropertyDefinition {
 
   public void setCardinality(Cardinality cardinality) {
     this.cardinality = cardinality;
+  }
+
+  @Override
+  public String toString() {
+    return "PropertyDefinition{"
+        + "id='"
+        + id
+        + '\''
+        + ", displayName='"
+        + displayName
+        + '\''
+        + ", propertyType="
+        + propertyType
+        + ", cardinality="
+        + cardinality
+        + '}';
   }
 }

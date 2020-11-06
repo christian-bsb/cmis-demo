@@ -47,4 +47,13 @@ public class ObjectDefinitionEntity {
   public void setPropertyDefinitions(List<PropertyDefinitionEntity> propertyDefinitions) {
     this.propertyDefinitions = propertyDefinitions;
   }
+
+  @Override
+  public String toString() {
+    return "ObjectDefinitionEntity{" +
+           "id=" + id +
+           ", name='" + name + '\'' +
+           ", propertyDefinitions=" + propertyDefinitions +
+           '}';
+  }
 }

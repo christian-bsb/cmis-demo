@@ -17,9 +17,9 @@ public class ObjectDefinitionController {
 
   private static Logger LOGGER = LoggerFactory.getLogger(ObjectDefinitionController.class);
 
-  @Autowired ObjectDefinitionService objectDefinitionService;
+  @Autowired ObjectDefinitionService objDefServ;
 
-  @Autowired ObjectDefinitionDto objectDefinitionDto;
+  @Autowired ObjectDefinitionDto objDefDto;
 
   @PostMapping(
       path = "repository/{repositoryId}/object/insert",
@@ -29,10 +29,8 @@ public class ObjectDefinitionController {
       @PathVariable(value = "repositoryId") String repositoryId,
       @RequestBody ObjectType objectType) {
     LOGGER.info("insert object type {}", objectType.getDisplayName());
-    ObjectDefinitionEntity objectDefinitionEntity =
-        objectDefinitionDto.objectTypeToObjectDefinitionEntity(objectType);
-    objectDefinitionEntity =
-        objectDefinitionService.createObjectDefinition(repositoryId, objectDefinitionEntity);
-    return objectDefinitionDto.objectDefinitinEntityToObjectType(objectDefinitionEntity);
+    ObjectDefinitionEntity objDefE = objDefDto.objTypeToObjDefE(objectType);
+    objDefE = objDefServ.createObjDef(repositoryId, objDefE);
+    return objDefDto.objDefEToObjType(objDefE);
   }
 }

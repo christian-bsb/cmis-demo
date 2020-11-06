@@ -1,9 +1,13 @@
 package com.example.cmisdemo.model;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class ObjectType {
 
-  String id;
-  String displayName;
+  String id = null;
+  String displayName = "";
+  List<PropertyDefinition> propertyDefinitions = new LinkedList<>();
 
   public ObjectType() {}
 
@@ -26,5 +30,27 @@ public class ObjectType {
 
   public void setDisplayName(String displayName) {
     this.displayName = displayName;
+  }
+
+  public List<PropertyDefinition> getPropertyDefinitions() {
+    return propertyDefinitions;
+  }
+
+  public void setPropertyDefinitions(List<PropertyDefinition> propertyDefinitions) {
+    this.propertyDefinitions = propertyDefinitions;
+  }
+
+  @Override
+  public String toString() {
+    return "ObjectType{"
+        + "id='"
+        + id
+        + '\''
+        + ", displayName='"
+        + displayName
+        + '\''
+        + ", propertyDefinitions="
+        + propertyDefinitions
+        + '}';
   }
 }
