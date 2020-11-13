@@ -1,7 +1,7 @@
 
 create table property_definition (
     id                  serial PRIMARY KEY,
-    object_definition   bigint references object_definition,
+    obj_definition      bigint references obj_definition,
     name                varchar(1024),
     cardinality         varchar(8)
 );

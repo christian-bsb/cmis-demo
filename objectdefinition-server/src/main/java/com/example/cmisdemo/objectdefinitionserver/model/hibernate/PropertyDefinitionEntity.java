@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "property_definiton")
+@Table(name = "property_definition")
 public class PropertyDefinitionEntity {
 
   @Id
@@ -20,7 +20,7 @@ public class PropertyDefinitionEntity {
   private String name;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "object_definition")
+  @JoinColumn(name = "obj_definition")
   private ObjectDefinitionEntity objectDefinition;
 
   public PropertyDefinitionEntity() {}
