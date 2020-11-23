@@ -19,15 +19,20 @@ public class ObjectDefinitionDto {
     return objectDefinitionEntity;
   }
 
-  public ObjectType objDefEToObjType(ObjectDefinitionEntity objectDefinitionEntity) {
+  public ObjectType objDefEToObjType(ObjectDefinitionEntity objDefE) {
     ObjectType objectType = new ObjectType();
-    objectType.setDisplayName(objectDefinitionEntity.getName());
+    objectType.setDisplayName(objDefE.getName());
+    objectType.setPropertyDefinitions(propDefEsToPropDefs(objDefE.getPropertyDefinitions()));
     return objectType;
   }
 
   public List<PropertyDefinitionEntity> propDefsToPropDefEs(
       List<PropertyDefinition> propDefs, ObjectDefinitionEntity objDefE) {
     return propDefs.stream().map(x -> propDefToPropDefE(x, objDefE)).collect(Collectors.toList());
+  }
+
+  public List<PropertyDefinition> propDefEsToPropDefs(List<PropertyDefinitionEntity> propDefEs) {
+    return propDefEs.stream().map(x -> propDefEToPropDef(x)).collect(Collectors.toList());
   }
 
   public PropertyDefinitionEntity propDefToPropDefE(
@@ -38,6 +43,17 @@ public class ObjectDefinitionDto {
     }
     propDefE.setName(propDef.getDisplayName());
     propDefE.setObjectDefinition(objDefE);
+    propDefE.setCardinality(propDef.getCardinality());
+    propDefE.setPropertyType(propDef.getPropertyType());
     return propDefE;
+  }
+
+  public PropertyDefinition propDefEToPropDef(PropertyDefinitionEntity propDefE) {
+    PropertyDefinition propDef = new PropertyDefinition();
+    propDef.setId("" + propDefE.getId());
+    propDef.setDisplayName(propDefE.getName());
+    propDef.setCardinality(propDefE.getCardinality());
+    propDef.setPropertyType(propDefE.getPropertyType());
+    return propDef;
   }
 }

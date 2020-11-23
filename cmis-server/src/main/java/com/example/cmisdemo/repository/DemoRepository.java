@@ -31,7 +31,7 @@ public class DemoRepository implements Repository {
   }
 
   @Override
-  public ObjectType getTypeDefinition(String typeId) {
+  public ObjectType getTypeDefinition(String typeId) throws Exception {
     return typeDefinitionRepository.getTypeDefinition(typeId);
   }
 

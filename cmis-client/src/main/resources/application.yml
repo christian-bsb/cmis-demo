@@ -6,3 +6,7 @@ spring:
 cmis:
   server:
     url: http://localhost:8085
+
+logging:
+  level:
+    ROOT: INFO

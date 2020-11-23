@@ -38,7 +38,13 @@ public class TypeDefinitionRepository {
     return respObjectType;
   }
 
-  public ObjectType getTypeDefinition(String typeId) {
-    return objectTypeMap.get(typeId);
+  public ObjectType getTypeDefinition(String typeId) throws Exception {
+    String url = baseUrl + "/repository/1/object/" + typeId;
+    HttpResponse<String> response = HttpUtil.sendGetRequest(url);
+    LOGGER.info(response.body());
+    String objectTypeJsonString = response.body();
+    ObjectType respObjectType = mapper.readValue(objectTypeJsonString, ObjectType.class);
+
+    return respObjectType;
   }
 }

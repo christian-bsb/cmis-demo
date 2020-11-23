@@ -29,8 +29,11 @@ public class Application implements CommandLineRunner {
   // access command line arguments
   @Override
   public void run(String... args) throws Exception {
-    ObjectType objectType = createObjectType();
-    System.out.println(objectType);
+    // ObjectType objectType = createObjectType();
+    // System.out.println(objectType);
+    // System.out.println("------ type id: " + objectType.getId());
+    ObjectType storedType = getTypeDefinition("1", /* objectType.getId()*/ "25");
+    LOGGER.info("stored type: " + storedType.toString());
 
     // createFolder();
     // String documentId = createDocument();
@@ -63,5 +66,9 @@ public class Application implements CommandLineRunner {
         .add(new PropertyDefinition(null, "text", PropertyType.HTML, Cardinality.SINGLE));
     cmisClientService.createObjectType("1", objectType);
     return objectType;
+  }
+
+  public ObjectType getTypeDefinition(String repositoryId, String typeId) throws Exception {
+    return cmisClientService.getTypeDefiniton(repositoryId, typeId);
   }
 }

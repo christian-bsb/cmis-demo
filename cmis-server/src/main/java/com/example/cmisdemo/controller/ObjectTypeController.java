@@ -32,8 +32,10 @@ public class ObjectTypeController {
   }
 
   @GetMapping("/repository/{repositoryId}/type/{typeid}")
-  public ObjectType getTypeDeﬁnition(
-      @PathVariable String repositoryId, @PathVariable String typeid) {
-    return repositoryService.getRepository(repositoryId).getTypeDefinition(typeid);
+  public ObjectType getTypeDeﬁnition(@PathVariable String repositoryId, @PathVariable String typeid)
+      throws Exception {
+    ObjectType objType = repositoryService.getRepository(repositoryId).getTypeDefinition(typeid);
+    LOGGER.info("request rep: " + repositoryId + " type: " + typeid + " resp: " + objType);
+    return objType;
   }
 }

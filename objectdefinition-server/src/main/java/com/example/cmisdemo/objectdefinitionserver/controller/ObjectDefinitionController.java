@@ -7,10 +7,7 @@ import com.example.cmisdemo.objectdefinitionserver.service.ObjectDefinitionServi
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ObjectDefinitionController {
@@ -32,5 +29,14 @@ public class ObjectDefinitionController {
     ObjectDefinitionEntity objDefE = objDefDto.objTypeToObjDefE(objectType);
     objDefE = objDefServ.createObjDef(repositoryId, objDefE);
     return objDefDto.objDefEToObjType(objDefE);
+  }
+
+  @GetMapping(path = "/repository/{repositoryId}/object/{typeId}", produces = "application/json")
+  public ObjectType getTypeDeﬁnition(
+      @PathVariable String repositoryId, @PathVariable String typeId) {
+    ObjectDefinitionEntity objDefE = objDefServ.getObjectDef(repositoryId, Long.parseLong(typeId));
+    ObjectType objDef = objDefDto.objDefEToObjType(objDefE);
+    LOGGER.info("request rep: " + repositoryId + " type: " + typeId + " obj def: " + objDef);
+    return objDef;
   }
 }

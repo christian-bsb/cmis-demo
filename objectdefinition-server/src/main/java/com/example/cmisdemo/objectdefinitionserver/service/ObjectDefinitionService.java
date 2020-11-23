@@ -16,11 +16,11 @@ public class ObjectDefinitionService {
 
   public ObjectDefinitionEntity createObjDef(String repId, ObjectDefinitionEntity objDefE) {
     LOGGER.info("createObjectDefinition: " + objDefE);
-    objectDefinitionRepository.save(objDefE);
-    return objDefE;
+    return objectDefinitionRepository.save(objDefE);
   }
 
-  public ObjectDefinitionEntity getObjectDefinition(String repositoryId, long typeId) {
+  public ObjectDefinitionEntity getObjectDef(String repositoryId, long typeId) {
+    LOGGER.info("getObjectDefinition: " + typeId);
     return objectDefinitionRepository.findById(typeId).get();
   }
 }

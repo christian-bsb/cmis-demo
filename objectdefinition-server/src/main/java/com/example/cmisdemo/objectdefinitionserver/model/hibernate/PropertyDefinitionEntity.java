@@ -1,5 +1,7 @@
 package com.example.cmisdemo.objectdefinitionserver.model.hibernate;
 
+import com.example.cmisdemo.model.Cardinality;
+import com.example.cmisdemo.model.PropertyType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -18,6 +20,10 @@ public class PropertyDefinitionEntity {
   private Long id;
 
   private String name;
+
+  private PropertyType propertyType;
+
+  private Cardinality cardinality;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "obj_definition")
@@ -47,5 +53,21 @@ public class PropertyDefinitionEntity {
 
   public void setObjectDefinition(ObjectDefinitionEntity objectDefinition) {
     this.objectDefinition = objectDefinition;
+  }
+
+  public PropertyType getPropertyType() {
+    return propertyType;
+  }
+
+  public void setPropertyType(PropertyType propertyType) {
+    this.propertyType = propertyType;
+  }
+
+  public Cardinality getCardinality() {
+    return cardinality;
+  }
+
+  public void setCardinality(Cardinality cardinality) {
+    this.cardinality = cardinality;
   }
 }

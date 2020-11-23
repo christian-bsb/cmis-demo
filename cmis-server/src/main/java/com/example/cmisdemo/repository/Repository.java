@@ -10,7 +10,7 @@ public interface Repository {
 
   ObjectType createType(ObjectType objectType) throws Exception;
 
-  ObjectType getTypeDefinition(String typeId);
+  ObjectType getTypeDefinition(String typeId) throws Exception;
 
   Folder createFolder(Folder folder) throws Exception;
 }

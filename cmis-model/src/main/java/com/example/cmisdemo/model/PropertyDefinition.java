@@ -2,10 +2,10 @@ package com.example.cmisdemo.model;
 
 public class PropertyDefinition {
 
-  String id;
-  String displayName;
-  PropertyType propertyType;
-  Cardinality cardinality;
+  String id = "";
+  String displayName = "";
+  PropertyType propertyType = PropertyType.STRING;
+  Cardinality cardinality = Cardinality.SINGLE;
 
   public PropertyDefinition() {}
 

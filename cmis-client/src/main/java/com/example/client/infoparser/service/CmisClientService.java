@@ -2,6 +2,7 @@ package com.example.client.infoparser.service;
 
 import com.example.cmisdemo.model.Folder;
 import com.example.cmisdemo.model.ObjectType;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -22,10 +23,15 @@ public class CmisClientService {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(CmisClientService.class);
 
-  ObjectMapper mapper = new ObjectMapper();
+  ObjectMapper mapper;
 
   @Value("${cmis.server.url}")
   private String baseurl;
+
+  public CmisClientService() {
+    mapper = new ObjectMapper();
+    mapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);
+  }
 
   public void save(Folder folder) throws Exception {
     sendPostRequest(baseurl + "/repository/1/folders", mapper.writeValueAsString(folder));
@@ -49,6 +55,13 @@ public class CmisClientService {
     return response.body();
   }
 
+  public ObjectType getTypeDefiniton(String repositoryId, String typeId) throws Exception {
+    HttpResponse<String> response =
+        sendGetRequest(baseurl + "/repository/" + repositoryId + "/type/" + typeId);
+    String body = response.body();
+    return mapper.readValue(body, ObjectType.class);
+  }
+
   HttpResponse<String> sendPostRequest(String url, String json) throws Exception {
     HttpClient httpClient = HttpClient.newBuilder().version(Version.HTTP_2).build();
 
@@ -58,6 +71,25 @@ public class CmisClientService {
             .timeout(Duration.ofMinutes(1))
             .header("Content-Type", "application/json")
             .POST(BodyPublishers.ofString(json))
+            .build();
+
+    HttpResponse<String> response = httpClient.send(request, BodyHandlers.ofString());
+
+    LOGGER.info("Response status code: " + response.statusCode());
+    LOGGER.info("Response headers: " + response.headers());
+    LOGGER.info("Response body: " + response.body());
+    return response;
+  }
+
+  HttpResponse<String> sendGetRequest(String url) throws Exception {
+    HttpClient httpClient = HttpClient.newBuilder().version(Version.HTTP_2).build();
+
+    HttpRequest request =
+        HttpRequest.newBuilder()
+            .uri(URI.create(url))
+            .timeout(Duration.ofMinutes(1))
+            .header("Content-Type", "application/json")
+            .GET()
             .build();
 
     HttpResponse<String> response = httpClient.send(request, BodyHandlers.ofString());

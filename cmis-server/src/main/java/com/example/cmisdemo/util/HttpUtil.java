@@ -34,24 +34,19 @@ public class HttpUtil {
     return response;
   }
 
-  /*
-  public static HttpResponse<T> sendPostRequestTyped(String url, String json) throws Exception {
+  public static HttpResponse<String> sendGetRequest(String url) throws Exception {
+    LOGGER.info("url: " + url);
     HttpClient httpClient = HttpClient.newBuilder().version(Version.HTTP_2).build();
 
     HttpRequest request =
         HttpRequest.newBuilder()
-                   .uri(URI.create(url))
-                   .timeout(Duration.ofMinutes(1))
-                   .header("Content-Type", "application/json")
-                   .POST(BodyPublishers.ofString(json))
-                   .build();
+            .uri(URI.create(url))
+            .timeout(Duration.ofMinutes(1))
+            .header("Content-Type", "application/json")
+            .GET()
+            .build();
 
-    HttpResponse<T> response = httpClient.send(request, BodyHandlers.);
-
-    LOGGER.info("Response status code: " + response.statusCode());
-    LOGGER.info("Response headers: " + response.headers());
-    LOGGER.info("Response body: " + response.body());
+    HttpResponse<String> response = httpClient.send(request, BodyHandlers.ofString());
     return response;
   }
-  */
 }
