@@ -8,54 +8,31 @@
 		<version>2.4.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example.cmisdemo</groupId>
-	<artifactId>objectdefinition-server</artifactId>
+	<groupId>com.example</groupId>
+	<artifactId>forms-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>objectdefinition-server</name>
-	<description>Metadata server for object definitions</description>
+	<name>forms-server</name>
+	<description>Demo project for Spring Boot</description>
 
 	<properties>
 		<java.version>14</java.version>
-    <version.maven-fmt-plugin>2.9</version.maven-fmt-plugin>
-  </properties>
+		<version.maven-fmt-plugin>2.9</version.maven-fmt-plugin>
+	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-rest</artifactId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-    <dependency>
-      <groupId>org.postgresql</groupId>
-      <artifactId>postgresql</artifactId>
-    </dependency>
-    <dependency>
-			<groupId>org.flywaydb</groupId>
-			<artifactId>flyway-core</artifactId>
-		</dependency>
-    <dependency>
-      <groupId>com.example</groupId>
-      <artifactId>cmis-model</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
-    </dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.junit.vintage</groupId>
-					<artifactId>junit-vintage-engine</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 	</dependencies>
 
@@ -65,7 +42,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-      <plugin>
+			<plugin>
         <groupId>com.coveo</groupId>
         <artifactId>fmt-maven-plugin</artifactId>
         <version>${version.maven-fmt-plugin}</version>
