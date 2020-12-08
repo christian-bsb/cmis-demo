@@ -1,3 +1,12 @@
+
+
+<p align="center">
+  <img src="http://docs.oasis-open.org/cmis/CMIS/v1.1/os/images/cmis.png" alt="CMIS-logo" width="240">
+  <div align="center">Content Management Interoperability Services</div>
+  <div align="center">Demo Service based on Java Spring Boot</div>
+</p>
+
+
 # cmis-demo
 
 ## Reset Database

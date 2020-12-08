@@ -6,15 +6,11 @@
 </head>
 <body>
 <h1>Form</h1>
-<form action="#" th:action="@{/saveBean}" th:object="${formBean}" method="post">
+<form action="#" th:action="@{/saveBean}" method="post">
     <table border="1">
-        <tr>
-            <td><label th:text="#{msg.id}" /></td>
-            <td><input type="number" th:field="*{id}" /></td>
-        </tr>
-        <tr>
-            <td><label th:text="#{msg.name}" /></td>
-            <td><input type="text" th:field="*{name}" /></td>
+        <tr th:each="prop: ${formBean.properties}">
+            <td><label th:text="${prop.getName()}" /></td>
+            <td><input type="text" th:name="${prop.getName()}" /></td>
         </tr>
         <tr>
             <td><input type="submit" value="Submit" /></td>
@@ -22,10 +18,5 @@
     </table>
 </form>
 
-<!-- form action="#" th:action="@{/greeting}" th:object="${greeting}" method="post">
-    <p>Id: <input type="text" th:field="*{id}" /></p>
-    <p>Message: <input type="text" th:field="*{content}" /></p>
-    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-</form -->
 </body>
 </html>

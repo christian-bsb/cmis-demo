@@ -1,32 +1,25 @@
 package com.example.formsserver.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FormBean implements Serializable {
 
-  String id;
-  String name;
+  List<FormBeanProperty> properties = new ArrayList<>();
 
-  public FormBean() {}
-
-  public FormBean(String id, String name) {
-    this.id = id;
-    this.name = name;
+  public FormBean() {
+    properties.add(new FormBeanProperty("id", ""));
+    properties.add(new FormBeanProperty("name", ""));
+    properties.add(new FormBeanProperty("kommentar", ""));
   }
 
-  public String getId() {
-    return id;
+  public List<FormBeanProperty> getProperties() {
+    return properties;
   }
 
-  public void setId(String id) {
-    this.id = id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
+  @Override
+  public String toString() {
+    return "FormBean{" + "properties=" + properties + '}';
   }
 }
