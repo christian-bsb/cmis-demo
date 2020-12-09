@@ -3,6 +3,7 @@ package com.example.cmisdemo.repository;
 import com.example.cmisdemo.model.Folder;
 import com.example.cmisdemo.model.ObjectType;
 import com.example.cmisdemo.model.RepositoryInfo;
+import example.com.cmisservices.repository.TypeDefinitionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

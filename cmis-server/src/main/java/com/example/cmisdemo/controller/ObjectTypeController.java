@@ -1,8 +1,8 @@
 package com.example.cmisdemo.controller;
 
 import com.example.cmisdemo.model.ObjectType;
-import com.example.cmisdemo.repository.TypeDefinitionRepository;
 import com.example.cmisdemo.service.RepositoryService;
+import example.com.cmisservices.repository.TypeDefinitionRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

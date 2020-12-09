@@ -29,10 +29,14 @@ public class Application implements CommandLineRunner {
   // access command line arguments
   @Override
   public void run(String... args) throws Exception {
-    // ObjectType objectType = createObjectType();
-    // System.out.println(objectType);
-    // System.out.println("------ type id: " + objectType.getId());
-    ObjectType storedType = getTypeDefinition("1", /* objectType.getId()*/ "25");
+    /*
+    ObjectType objectType = createObjectType();
+    System.out.println(objectType);
+    System.out.println("------ type id: " + objectType.getId());
+    */
+
+    String objectTypeId = "8";
+    ObjectType storedType = getTypeDefinition("1", objectTypeId);
     LOGGER.info("stored type: " + storedType.toString());
 
     // createFolder();

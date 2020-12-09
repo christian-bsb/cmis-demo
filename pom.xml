@@ -11,6 +11,7 @@
 
   <modules>
     <module>cmis-model</module>
+    <module>cmis-services</module>
     <module>cmis-client</module>
     <module>cmis-server</module>
     <module>objectdefinition-server</module>

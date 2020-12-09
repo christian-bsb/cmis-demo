@@ -1,4 +1,4 @@
-package com.example.cmisdemo.util;
+package example.com.cmisservices.util;
 
 import java.net.URI;
 import java.net.http.HttpClient;

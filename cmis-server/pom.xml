@@ -46,6 +46,11 @@
       <artifactId>cmis-model</artifactId>
       <version>0.0.1-SNAPSHOT</version>
     </dependency>
+    <dependency>
+      <groupId>com.example</groupId>
+      <artifactId>cmis-services</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
   </dependencies>
 
   <build>
