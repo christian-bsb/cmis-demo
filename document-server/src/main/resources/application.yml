@@ -1,0 +1,6 @@
+
+server:
+  port : 8087
+
+object-type-server:
+  url: http://localhost:8083

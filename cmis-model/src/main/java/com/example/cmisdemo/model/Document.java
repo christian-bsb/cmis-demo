@@ -1,16 +1,18 @@
 package com.example.cmisdemo.model;
 
-import java.util.Properties;
+import java.util.List;
 
 public class Document {
 
-  Properties properties;
+  List<CmisProperty> properties;
 
-  public Document(Properties properties) {
+  public Document() {}
+
+  public Document(List<CmisProperty> properties) {
     this.properties = properties;
   }
 
-  public Properties getProperties() {
+  public List<CmisProperty> getProperties() {
     return properties;
   }
 }

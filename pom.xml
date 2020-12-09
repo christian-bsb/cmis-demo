@@ -15,6 +15,7 @@
     <module>cmis-client</module>
     <module>cmis-server</module>
     <module>objectdefinition-server</module>
+    <module>document-server</module>
     <module>forms-server</module>
   </modules>
 
