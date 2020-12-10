@@ -4,3 +4,8 @@ server:
 
 object-type-server:
   url: http://localhost:8083
+
+spring:
+  data:
+    solr:
+      host: http://localhost:8983/solr

@@ -2,6 +2,7 @@ package com.example.docuserver.controller;
 
 import com.example.cmisdemo.model.CmisProperty;
 import com.example.cmisdemo.model.Document;
+import com.example.docuserver.service.DocumentService;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +19,8 @@ public class DoumentController {
   private static Logger LOGGER = LoggerFactory.getLogger(DoumentController.class);
 
 
+  @Autowired
+  DocumentService documentService;
 
   @PostMapping(
       path = "repository/{repositoryId}/document/insert",
@@ -36,5 +39,12 @@ public class DoumentController {
       @PathVariable String repositoryId, @PathVariable String documentId) {
     LOGGER.info("request rep: " + repositoryId + " type: " + documentId);
     return new Document();
+  }
+
+  @GetMapping(path = "/repository/{repositoryId}/documents", produces = "application/json")
+  public List<Document> getDocuments(
+      @PathVariable String repositoryId) {
+    LOGGER.info("request rep: " + repositoryId );
+    return documentService.getDocuments();
   }
 }
