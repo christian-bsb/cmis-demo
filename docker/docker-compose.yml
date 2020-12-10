@@ -1,5 +1,5 @@
 # Use postgres/example user/password credentials
-# sudo docker-compose (up -d | stop | down)
+# sudo docker-compose up -d 
 version: '3.1'
 
 services:
@@ -10,4 +10,17 @@ services:
       POSTGRES_PASSWORD: example
     ports:
       - 5433:5432
+
+  solr:
+    image: solr:8
+    ports:
+      - "8983:8983"
+    volumes:
+      - data:/var/solr
+    command:
+      - solr-precreate
+      - gettingstarted
+
+volumes:
+  data:
 
