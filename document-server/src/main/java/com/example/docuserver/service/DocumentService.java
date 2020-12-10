@@ -21,4 +21,9 @@ public class DocumentService {
     List<CmisDoc> cmisDocs = cmisDocRepository.getCmisDocs();
     return dtoService.cmisDocsToDocuments(cmisDocs);
   }
+  public Document insert( Document document){
+    CmisDoc cmisDoc = dtoService.documentToCmisDoc(document);
+    CmisDoc saved = cmisDocRepository.save(cmisDoc);
+    return dtoService.cmisDocToDocument(saved);
+  }
 }

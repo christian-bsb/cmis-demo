@@ -26,4 +26,11 @@ public class DtoService {
     return document;
   }
 
+  public CmisDoc documentToCmisDoc(Document document){
+
+    CmisDoc cmisDoc = new CmisDoc();
+    cmisDoc.setId("todo-302");
+    return cmisDoc;
+  }
+
 }

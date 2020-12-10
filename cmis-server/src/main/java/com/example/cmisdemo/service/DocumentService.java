@@ -1,14 +1,17 @@
 package com.example.cmisdemo.service;
 
-import java.util.Properties;
+import com.example.cmisdemo.model.Document;
+import example.com.cmisservices.repository.DocumentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class DocumentService {
 
-  public String createDocument(String repositoryId, String folderId, Properties properties) {
-    String documentId = "333";
+  @Autowired DocumentRepository documentRepository;
 
-    return documentId;
+  public String createDocument(String repositoryId, String folderId, Document document)
+      throws Exception {
+    return documentRepository.createDocument(document);
   }
 }

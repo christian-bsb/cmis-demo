@@ -1,8 +1,8 @@
 package com.example.cmisdemo.controller;
 
+import com.example.cmisdemo.model.Document;
 import com.example.cmisdemo.service.DocumentService;
 import com.example.cmisdemo.service.RepositoryService;
-import java.util.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +24,9 @@ public class DocumentController {
   String createDocument(
       @PathVariable String repositoryId,
       @PathVariable String folderId,
-      @RequestBody Properties properties)
+      @RequestBody Document document)
       throws Exception {
-    LOGGER.info(properties.toString());
-    // Repository repository = repositoryService.getRepository(repositoryId);
-    return documentService.createDocument(repositoryId, folderId, properties);
+    LOGGER.info(document.toString());
+    return documentService.createDocument(repositoryId, folderId, document);
   }
 }

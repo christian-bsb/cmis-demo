@@ -2,12 +2,12 @@ package com.example.client.infoparser;
 
 import com.example.client.infoparser.service.CmisClientService;
 import com.example.cmisdemo.model.Cardinality;
-import com.example.cmisdemo.model.Constants;
+import com.example.cmisdemo.model.CmisProperty;
+import com.example.cmisdemo.model.Document;
 import com.example.cmisdemo.model.Folder;
 import com.example.cmisdemo.model.ObjectType;
 import com.example.cmisdemo.model.PropertyDefinition;
 import com.example.cmisdemo.model.PropertyType;
-import java.util.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,13 +35,14 @@ public class Application implements CommandLineRunner {
     System.out.println("------ type id: " + objectType.getId());
     */
 
+    /*
     String objectTypeId = "8";
     ObjectType storedType = getTypeDefinition("1", objectTypeId);
     LOGGER.info("stored type: " + storedType.toString());
-
+    */
     // createFolder();
-    // String documentId = createDocument();
-    // LOGGER.info("document id =" + documentId);
+    String documentId = createDocument();
+    LOGGER.info("document id =" + documentId);
   }
 
   void createFolder() throws Exception {
@@ -55,9 +56,15 @@ public class Application implements CommandLineRunner {
   }
 
   public String createDocument() throws Exception {
-    Properties properties = new Properties();
-    properties.put(Constants.PARAM_PATH, "exampeDoc.txt");
-    return cmisClientService.createDocument("1", "1", properties);
+    // Properties properties = new Properties();
+    // properties.put(Constants.PARAM_PATH, "exampeDoc.txt");
+
+    PropertyDefinition iddef =
+        new PropertyDefinition("id", "id", PropertyType.STRING, Cardinality.SINGLE);
+    Document document = new Document();
+    document.getProperties().add(new CmisProperty(iddef, "id:777"));
+
+    return cmisClientService.createDocument("1", "1", document);
   }
 
   public ObjectType createObjectType() throws Exception {

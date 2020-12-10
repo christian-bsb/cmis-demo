@@ -23,15 +23,18 @@ public class DoumentController {
   DocumentService documentService;
 
   @PostMapping(
-      path = "repository/{repositoryId}/document/insert",
+      path = "/repository/{repositoryId}/folder/{folderId}/documents",
       consumes = "application/json",
       produces = "application/json")
-  public Document createObjectDefiniton(
+  public String createDocument(
       @PathVariable(value = "repositoryId") String repositoryId,
+      @PathVariable(value = "folderId") String folderId,
       @RequestBody Document document) {
     LOGGER.info("insert document {}", document.toString());
 
-    return document;
+    Document inserted = documentService.insert(document);
+
+    return "dummy:from:controller";
   }
 
   @GetMapping(path = "/repository/{repositoryId}/document/{documentId}", produces = "application/json")
