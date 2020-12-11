@@ -29,7 +29,11 @@ public class DtoService {
   public CmisDoc documentToCmisDoc(Document document){
 
     CmisDoc cmisDoc = new CmisDoc();
-    cmisDoc.setId("todo-302");
+    cmisDoc.setId("undefined");
+    for ( CmisProperty cmisProperty : document.getProperties()){
+      if (cmisProperty.getDefinition().getDisplayName().equals("id"))
+      cmisDoc.setId(cmisProperty.getValue().toString());
+    }
     return cmisDoc;
   }
 
