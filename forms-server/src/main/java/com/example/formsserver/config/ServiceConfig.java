@@ -1,5 +1,6 @@
 package com.example.formsserver.config;
 
+import example.com.cmisservices.repository.DocumentRepository;
 import example.com.cmisservices.repository.TypeDefinitionRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -14,5 +15,10 @@ public class ServiceConfig {
   @Bean
   TypeDefinitionRepository getTypeDefinitionRepository() {
     return new TypeDefinitionRepository(cmisServerUrl);
+  }
+
+  @Bean
+  DocumentRepository getDocumentRepository() {
+    return new DocumentRepository(cmisServerUrl);
   }
 }
