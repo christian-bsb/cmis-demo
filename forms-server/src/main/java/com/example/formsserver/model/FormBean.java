@@ -9,9 +9,9 @@ public class FormBean implements Serializable {
   List<FormBeanProperty> properties = new ArrayList<>();
 
   public FormBean() {
-    properties.add(new FormBeanProperty("id", ""));
-    properties.add(new FormBeanProperty("name", ""));
-    properties.add(new FormBeanProperty("kommentar", ""));
+    // properties.add(new FormBeanProperty("id", ""));
+    // properties.add(new FormBeanProperty("name", ""));
+    // properties.add(new FormBeanProperty("kommentar", ""));
   }
 
   public List<FormBeanProperty> getProperties() {

@@ -20,7 +20,7 @@ public class TypeDefinitionRepository {
   }
 
   public ObjectType createType(ObjectType objectType) throws Exception {
-    String url = baseUrl + "/repository/1/object/insert";
+    String url = baseUrl + "/repository/1/type/insert";
     HttpResponse<String> response =
         HttpUtil.sendPostRequest(url, mapper.writeValueAsString(objectType));
     LOGGER.info(response.body());
@@ -31,7 +31,7 @@ public class TypeDefinitionRepository {
   }
 
   public ObjectType getTypeDefinition(String typeId) throws Exception {
-    String url = baseUrl + "/repository/1/object/" + typeId;
+    String url = baseUrl + "/repository/1/type/" + typeId;
     HttpResponse<String> response = HttpUtil.sendGetRequest(url);
     LOGGER.info(response.body());
     String objectTypeJsonString = response.body();

@@ -19,7 +19,7 @@ public class ObjectDefinitionController {
   @Autowired ObjectDefinitionDto objDefDto;
 
   @PostMapping(
-      path = "repository/{repositoryId}/object/insert",
+      path = "repository/{repositoryId}/type/insert",
       consumes = "application/json",
       produces = "application/json")
   public ObjectType createObjectDefiniton(
@@ -31,7 +31,7 @@ public class ObjectDefinitionController {
     return objDefDto.objDefEToObjType(objDefE);
   }
 
-  @GetMapping(path = "/repository/{repositoryId}/object/{typeId}", produces = "application/json")
+  @GetMapping(path = "/repository/{repositoryId}/type/{typeId}", produces = "application/json")
   public ObjectType getTypeDeﬁnition(
       @PathVariable String repositoryId, @PathVariable String typeId) {
     ObjectDefinitionEntity objDefE = objDefServ.getObjectDef(repositoryId, Long.parseLong(typeId));

@@ -44,7 +44,6 @@ public class Application implements CommandLineRunner {
 
     String documentId = createDocument();
     LOGGER.info("document id =" + documentId);
-
   }
 
   void createFolder() throws Exception {

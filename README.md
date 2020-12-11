@@ -12,9 +12,9 @@
 ## URLs
   * cmis server: http://localhost:8085
   * forms server: http://localhost:8086
-    * show a form: http://localhost:8086/form
+    * show a form: http://localhost:8086/repository/1/type/1/form
   * type server: http://localhost:8083
-    * show a type: http://localhost:8083/repository/1/object/{typeId}
+    * show a type: http://localhost:8083/repository/1/type/{typeId}
   * document server: http://localhost:8087
     * list Docs: http://localhost:8087/repository/1/documents
   * solr: http://localhost:8983/solr
