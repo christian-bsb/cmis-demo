@@ -29,10 +29,10 @@ public class Application implements CommandLineRunner {
   // access command line arguments
   @Override
   public void run(String... args) throws Exception {
+
     /*
     ObjectType objectType = createObjectType();
     System.out.println(objectType);
-    System.out.println("------ type id: " + objectType.getId());
     */
 
     /*
@@ -41,8 +41,10 @@ public class Application implements CommandLineRunner {
     LOGGER.info("stored type: " + storedType.toString());
     */
     // createFolder();
+
     String documentId = createDocument();
     LOGGER.info("document id =" + documentId);
+
   }
 
   void createFolder() throws Exception {
