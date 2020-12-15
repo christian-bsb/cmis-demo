@@ -1,0 +1,13 @@
+
+
+server:
+  port: 8088
+
+cmis:
+  server:
+    url: http://localhost:8085
+
+logging:
+  level:
+    ROOT: INFO
+

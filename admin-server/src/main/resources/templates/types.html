@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Form</h1>
+<form action="#" th:action="@{/saveBean}" method="post">
+    <table border="1">
+        <tr th:each="prop: ${formBean.properties}">
+            <td><label th:text="${prop.getName()}" /></td>
+            <td><input type="text" th:name="${prop.getName()}" /></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Submit" /></td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>

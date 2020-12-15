@@ -17,6 +17,7 @@
     <module>objectdefinition-server</module>
     <module>document-server</module>
     <module>forms-server</module>
+    <module>admin-server</module>
   </modules>
 
 </project>
