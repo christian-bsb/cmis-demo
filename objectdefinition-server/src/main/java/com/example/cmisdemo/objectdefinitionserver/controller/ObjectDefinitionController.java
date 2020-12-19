@@ -4,6 +4,7 @@ import com.example.cmisdemo.model.ObjectType;
 import com.example.cmisdemo.objectdefinitionserver.dto.ObjectDefinitionDto;
 import com.example.cmisdemo.objectdefinitionserver.model.hibernate.ObjectDefinitionEntity;
 import com.example.cmisdemo.objectdefinitionserver.service.ObjectDefinitionService;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +39,12 @@ public class ObjectDefinitionController {
     ObjectType objDef = objDefDto.objDefEToObjType(objDefE);
     LOGGER.info("request rep: " + repositoryId + " type: " + typeId + " obj def: " + objDef);
     return objDef;
+  }
+
+  @GetMapping(path = "/repository/{repositoryId}/types", produces = "application/json")
+  public List<ObjectType> getTypeDeﬁnitions(@PathVariable String repositoryId) {
+    Iterable<ObjectDefinitionEntity> objDefEs = objDefServ.getObjectDefs(repositoryId);
+    List<ObjectType> objDefs = objDefDto.objDefEsToObjTypes(objDefEs);
+    return objDefs;
   }
 }

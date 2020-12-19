@@ -3,6 +3,7 @@ package com.example.cmisdemo.controller;
 import com.example.cmisdemo.model.ObjectType;
 import com.example.cmisdemo.service.RepositoryService;
 import example.com.cmisservices.repository.TypeDefinitionRepository;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,10 @@ public class ObjectTypeController {
     ObjectType objType = repositoryService.getRepository(repositoryId).getTypeDefinition(typeid);
     LOGGER.info("request rep: " + repositoryId + " type: " + typeid + " resp: " + objType);
     return objType;
+  }
+
+  @GetMapping(path = "/repository/{repositoryId}/types", produces = "application/json")
+  public List<ObjectType> getTypeDeﬁnitions(@PathVariable String repositoryId) throws Exception {
+    return typeDefinitionRepository.getTypeDefinitions();
   }
 }

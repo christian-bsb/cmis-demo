@@ -4,12 +4,21 @@ import com.example.cmisdemo.model.ObjectType;
 import com.example.cmisdemo.model.PropertyDefinition;
 import com.example.cmisdemo.objectdefinitionserver.model.hibernate.ObjectDefinitionEntity;
 import com.example.cmisdemo.objectdefinitionserver.model.hibernate.PropertyDefinitionEntity;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ObjectDefinitionDto {
+
+  public List<ObjectType> objDefEsToObjTypes(Iterable<ObjectDefinitionEntity> objDefEs) {
+    List<ObjectType> objectTypes = new ArrayList<>();
+    for (ObjectDefinitionEntity objDefE : objDefEs) {
+      objectTypes.add(objDefEToObjType(objDefE));
+    }
+    return objectTypes;
+  }
 
   public ObjectDefinitionEntity objTypeToObjDefE(ObjectType objectType) {
     ObjectDefinitionEntity objectDefinitionEntity = new ObjectDefinitionEntity();
@@ -21,6 +30,7 @@ public class ObjectDefinitionDto {
 
   public ObjectType objDefEToObjType(ObjectDefinitionEntity objDefE) {
     ObjectType objectType = new ObjectType();
+    objectType.setId("" + objDefE.getId());
     objectType.setDisplayName(objDefE.getName());
     objectType.setPropertyDefinitions(propDefEsToPropDefs(objDefE.getPropertyDefinitions()));
     return objectType;

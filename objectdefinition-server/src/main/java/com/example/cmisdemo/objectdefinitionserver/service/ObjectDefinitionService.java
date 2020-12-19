@@ -23,4 +23,9 @@ public class ObjectDefinitionService {
     LOGGER.info("getObjectDefinition: " + typeId);
     return objectDefinitionRepository.findById(typeId).get();
   }
+
+  public Iterable<ObjectDefinitionEntity> getObjectDefs(String repositoryId) {
+    LOGGER.info("getObjectDefs: start");
+    return objectDefinitionRepository.findAll();
+  }
 }
