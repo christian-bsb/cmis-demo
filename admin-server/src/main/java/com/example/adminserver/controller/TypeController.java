@@ -1,5 +1,6 @@
 package com.example.adminserver.controller;
 
+import com.example.adminserver.model.TypeFormBean;
 import com.example.cmisdemo.model.*;
 import example.com.cmisservices.repository.DocumentRepository;
 import example.com.cmisservices.repository.TypeDefinitionRepository;
@@ -24,12 +25,13 @@ public class TypeController {
       @PathVariable String repositoryId, @PathVariable String typeId, Model model)
       throws Exception {
 
-    ObjectType objectType = new ObjectType();
+    TypeFormBean typeFormBean = new TypeFormBean();
     if (!"new".equals(typeId)) {
-      objectType = typeDefinitionRepository.getTypeDefinition(typeId);
+      ObjectType objectType = typeDefinitionRepository.getTypeDefinition(typeId);
+      typeFormBean.setDisplayName(objectType.getDisplayName());
     }
 
-    model.addAttribute("type", objectType);
+    model.addAttribute("type", typeFormBean);
     return "types";
   }
 

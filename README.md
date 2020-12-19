@@ -19,6 +19,8 @@
     * show a type: http://localhost:8083/repository/1/type/{typeId}
   * document server: http://localhost:8087
     * list Docs: http://localhost:8087/repository/1/documents
+  * admin server: http://localhost:8088
+    * edit type: http://localhost:8088/repository/1/type/1/edit
   * solr: http://localhost:8983/solr
 
 ## Reset Database

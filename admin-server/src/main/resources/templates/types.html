@@ -5,10 +5,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<h1>Form</h1>
+<h1 th:text="${type.displayName}">Type</h1>
 <form action="#" th:action="@{/saveBean}" method="post">
     <table border="1">
-        <tr th:each="prop: ${formBean.properties}">
+        <tr th:each="prop: ${type.propertyDefinitions}">
             <td><label th:text="${prop.getName()}" /></td>
             <td><input type="text" th:name="${prop.getName()}" /></td>
         </tr>
