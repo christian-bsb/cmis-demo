@@ -20,7 +20,8 @@
   * document server: http://localhost:8087
     * list Docs: http://localhost:8087/repository/1/documents
   * admin server: http://localhost:8088
-    * edit type: http://localhost:8088/repository/1/type/1/edit
+    * edit type: http://localhost:8088/repository/1/type/1/update
+    * new type: http://localhost:8088/repository/1/type/insert
   * solr: http://localhost:8983/solr
 
 ## Reset Database

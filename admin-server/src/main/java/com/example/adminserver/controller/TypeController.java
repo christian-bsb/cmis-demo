@@ -20,8 +20,15 @@ public class TypeController {
 
   @Autowired DocumentRepository documentRepository;
 
-  @GetMapping("/repository/{repositoryId}/type/{typeId}/edit")
-  public String createForm(
+  @GetMapping("/repository/{repositoryId}/type/insert")
+  public String createType(@PathVariable String repositoryId, Model model) throws Exception {
+
+    TypeFormBean typeFormBean = new TypeFormBean();
+    return "newtype";
+  }
+
+  @GetMapping("/repository/{repositoryId}/type/{typeId}/update")
+  public String updateType(
       @PathVariable String repositoryId, @PathVariable String typeId, Model model)
       throws Exception {
 
@@ -33,6 +40,30 @@ public class TypeController {
 
     model.addAttribute("type", typeFormBean);
     return "types";
+  }
+
+  @RequestMapping(value = "/newtype", method = RequestMethod.GET)
+  public String newType(@RequestParam String id, @RequestParam String displayname)
+      throws Exception {
+
+    ObjectType objectType = new ObjectType();
+    objectType.setId(id);
+    objectType.setDisplayName(displayname);
+
+    typeDefinitionRepository.createType(objectType);
+
+    return "redirect:/repository/1/type/" + id + "/form/update";
+  }
+
+  @RequestMapping(value = "/newtype2", method = RequestMethod.GET)
+  public String newType2(@RequestParam String id) throws Exception {
+
+    ObjectType objectType = new ObjectType();
+    objectType.setId(id);
+    objectType.setDisplayName("test displayname " + id);
+    typeDefinitionRepository.createType(objectType);
+
+    return "newtype";
   }
 
   @RequestMapping(value = "/saveType", method = RequestMethod.POST)
