@@ -22,6 +22,7 @@ public class ObjectDefinitionDto {
 
   public ObjectDefinitionEntity objTypeToObjDefE(ObjectType objectType) {
     ObjectDefinitionEntity objectDefinitionEntity = new ObjectDefinitionEntity();
+    objectDefinitionEntity.setId(objectType.getId());
     objectDefinitionEntity.setName(objectType.getDisplayName());
     objectDefinitionEntity.setPropertyDefinitions(
         propDefsToPropDefEs(objectType.getPropertyDefinitions(), objectDefinitionEntity));
@@ -30,7 +31,7 @@ public class ObjectDefinitionDto {
 
   public ObjectType objDefEToObjType(ObjectDefinitionEntity objDefE) {
     ObjectType objectType = new ObjectType();
-    objectType.setId("" + objDefE.getId());
+    objectType.setId(objDefE.getId());
     objectType.setDisplayName(objDefE.getName());
     objectType.setPropertyDefinitions(propDefEsToPropDefs(objDefE.getPropertyDefinitions()));
     return objectType;
@@ -48,9 +49,7 @@ public class ObjectDefinitionDto {
   public PropertyDefinitionEntity propDefToPropDefE(
       PropertyDefinition propDef, ObjectDefinitionEntity objDefE) {
     PropertyDefinitionEntity propDefE = new PropertyDefinitionEntity();
-    if (propDef.getId() != null) {
-      propDefE.setId(Long.getLong(propDef.getId()));
-    }
+    propDefE.setId(propDef.getId());
     propDefE.setName(propDef.getDisplayName());
     propDefE.setObjectDefinition(objDefE);
     propDefE.setCardinality(propDef.getCardinality());
@@ -60,7 +59,7 @@ public class ObjectDefinitionDto {
 
   public PropertyDefinition propDefEToPropDef(PropertyDefinitionEntity propDefE) {
     PropertyDefinition propDef = new PropertyDefinition();
-    propDef.setId("" + propDefE.getId());
+    propDef.setId(propDefE.getId());
     propDef.setDisplayName(propDefE.getName());
     propDef.setCardinality(propDefE.getCardinality());
     propDef.setPropertyType(propDefE.getPropertyType());

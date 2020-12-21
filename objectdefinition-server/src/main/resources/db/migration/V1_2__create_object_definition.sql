@@ -1,5 +1,6 @@
 
 create table obj_definition (
-    id       serial PRIMARY KEY,
+    pk      serial PRIMARY KEY,
+    id      varchar(64),
     name    varchar(1024)
 );

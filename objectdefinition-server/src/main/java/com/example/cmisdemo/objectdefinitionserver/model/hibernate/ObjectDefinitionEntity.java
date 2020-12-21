@@ -15,7 +15,9 @@ public class ObjectDefinitionEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private Long id;
+  private Long pk;
+
+  private String id;
 
   private String name;
 
@@ -24,11 +26,19 @@ public class ObjectDefinitionEntity {
 
   public ObjectDefinitionEntity() {}
 
-  public Long getId() {
+  public Long getPk() {
+    return pk;
+  }
+
+  public void setPk(Long pk) {
+    this.pk = pk;
+  }
+
+  public String getId() {
     return id;
   }
 
-  public void setId(Long id) {
+  public void setId(String id) {
     this.id = id;
   }
 

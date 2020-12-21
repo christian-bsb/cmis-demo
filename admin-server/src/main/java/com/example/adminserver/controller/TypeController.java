@@ -60,7 +60,7 @@ public class TypeController {
 
     ObjectType objectType = new ObjectType();
     objectType.setId(id);
-    objectType.setDisplayName("test displayname " + id);
+    objectType.setDisplayName("displayname of " + id);
     typeDefinitionRepository.createType(objectType);
 
     return "newtype";
