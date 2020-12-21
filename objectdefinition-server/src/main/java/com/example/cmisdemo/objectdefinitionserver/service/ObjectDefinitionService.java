@@ -1,5 +1,6 @@
 package com.example.cmisdemo.objectdefinitionserver.service;
 
+import com.example.cmisdemo.objectdefinitionserver.dto.ObjectDefinitionEntitiyToObjDefE;
 import com.example.cmisdemo.objectdefinitionserver.model.hibernate.ObjectDefinitionEntity;
 import com.example.cmisdemo.objectdefinitionserver.repository.ObjectDefinitionRepository;
 import java.util.List;
@@ -15,9 +16,18 @@ public class ObjectDefinitionService {
 
   @Autowired ObjectDefinitionRepository objectDefinitionRepository;
 
-  public ObjectDefinitionEntity createObjDef(String repId, ObjectDefinitionEntity objDefE) {
+  @Autowired ObjectDefinitionEntitiyToObjDefE entitiyToObjDefE;
+
+  public ObjectDefinitionEntity saveObjDef(String repId, ObjectDefinitionEntity objDefE) {
     LOGGER.info("createObjectDefinition: " + objDefE);
-    return objectDefinitionRepository.save(objDefE);
+    List<ObjectDefinitionEntity> storedObjDefEs =
+        objectDefinitionRepository.findByTypeId(objDefE.getTypeId());
+    if (storedObjDefEs.isEmpty()) {
+      return objectDefinitionRepository.save(objDefE);
+    } else {
+      return objectDefinitionRepository.save(
+          entitiyToObjDefE.objDefEToObjDefE(objDefE, storedObjDefEs.get(0)));
+    }
   }
 
   public ObjectDefinitionEntity getObjectDef(String repositoryId, long pk) {

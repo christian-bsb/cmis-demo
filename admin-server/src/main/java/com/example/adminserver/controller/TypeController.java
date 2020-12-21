@@ -33,9 +33,11 @@ public class TypeController {
       throws Exception {
 
     TypeFormBean typeFormBean = new TypeFormBean();
-    if (!"new".equals(typeId)) {
-      ObjectType objectType = typeDefinitionRepository.getTypeDefinition(typeId);
-      typeFormBean.setDisplayName(objectType.getDisplayName());
+    ObjectType objectType = typeDefinitionRepository.getTypeDefinition(typeId);
+    typeFormBean.setId(objectType.getTypeId());
+    typeFormBean.setDisplayName(objectType.getDisplayName());
+    for (PropertyDefinition propertyDefinition : objectType.getPropertyDefinitions()) {
+      typeFormBean.getPropertyDefinitions().add(propertyDefinition);
     }
 
     model.addAttribute("type", typeFormBean);

@@ -28,7 +28,21 @@ public class ObjectDefinitionController {
       @RequestBody ObjectType objectType) {
     LOGGER.info("insert object type {}", objectType.getDisplayName());
     ObjectDefinitionEntity objDefE = objDefDto.objTypeToObjDefE(objectType);
-    objDefE = objDefServ.createObjDef(repositoryId, objDefE);
+    objDefE = objDefServ.saveObjDef(repositoryId, objDefE);
+    return objDefDto.objDefEToObjType(objDefE);
+  }
+
+  @PostMapping(
+      path = "repository/{repositoryId}/type/{typeId}/update",
+      consumes = "application/json",
+      produces = "application/json")
+  public ObjectType updateObjectDefiniton(
+      @PathVariable(value = "repositoryId") String repositoryId,
+      @PathVariable String typeId,
+      @RequestBody ObjectType objectType) {
+    LOGGER.info("update object type {}", objectType.getDisplayName());
+    ObjectDefinitionEntity objDefE = objDefDto.objTypeToObjDefE(objectType);
+    objDefE = objDefServ.saveObjDef(repositoryId, objDefE);
     return objDefDto.objDefEToObjType(objDefE);
   }
 

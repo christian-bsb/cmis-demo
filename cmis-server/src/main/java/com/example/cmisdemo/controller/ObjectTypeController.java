@@ -22,13 +22,14 @@ public class ObjectTypeController {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(ObjectTypeController.class);
 
-  @PostMapping("/repository/{repositoryId}/type/insert")
-  ObjectType createType(@RequestBody ObjectType objectType, @PathVariable String repositoryId)
+  @PostMapping("/repository/{repositoryId}/type/{typeid}/update")
+  ObjectType createType(
+      @RequestBody ObjectType objectType,
+      @PathVariable String repositoryId,
+      @PathVariable String typeid)
       throws Exception {
     LOGGER.info(objectType.toString());
     ObjectType newType = typeDefinitionRepository.createType(objectType);
-    // Repository repository = repositoryService.getRepository(repositoryId);
-    // return repository.createType(objectType);
     return newType;
   }
 
