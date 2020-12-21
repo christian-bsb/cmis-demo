@@ -2,7 +2,7 @@ package com.example.cmisdemo.model;
 
 public class PropertyDefinition {
 
-  String id = "";
+  String propertyId = "";
   String displayName = "";
   PropertyType propertyType = PropertyType.STRING;
   Cardinality cardinality = Cardinality.SINGLE;
@@ -11,18 +11,18 @@ public class PropertyDefinition {
 
   public PropertyDefinition(
       String id, String displayName, PropertyType propertyType, Cardinality cardinality) {
-    this.id = id;
+    this.propertyId = id;
     this.displayName = displayName;
     this.propertyType = propertyType;
     this.cardinality = cardinality;
   }
 
-  public String getId() {
-    return id;
+  public String getPropertyId() {
+    return propertyId;
   }
 
-  public void setId(String id) {
-    this.id = id;
+  public void setPropertyId(String propertyId) {
+    this.propertyId = propertyId;
   }
 
   public String getDisplayName() {
@@ -53,7 +53,7 @@ public class PropertyDefinition {
   public String toString() {
     return "PropertyDefinition{"
         + "id='"
-        + id
+        + propertyId
         + '\''
         + ", displayName='"
         + displayName

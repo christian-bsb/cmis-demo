@@ -47,7 +47,7 @@ public class TypeController {
       throws Exception {
 
     ObjectType objectType = new ObjectType();
-    objectType.setId(id);
+    objectType.setTypeId(id);
     objectType.setDisplayName(displayname);
 
     typeDefinitionRepository.createType(objectType);
@@ -59,7 +59,7 @@ public class TypeController {
   public String newType2(@RequestParam String id) throws Exception {
 
     ObjectType objectType = new ObjectType();
-    objectType.setId(id);
+    objectType.setTypeId(id);
     objectType.setDisplayName("displayname of " + id);
     typeDefinitionRepository.createType(objectType);
 

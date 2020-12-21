@@ -17,7 +17,7 @@ public class ObjectDefinitionEntity {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long pk;
 
-  private String id;
+  private String typeId;
 
   private String name;
 
@@ -34,12 +34,12 @@ public class ObjectDefinitionEntity {
     this.pk = pk;
   }
 
-  public String getId() {
-    return id;
+  public String getTypeId() {
+    return typeId;
   }
 
-  public void setId(String id) {
-    this.id = id;
+  public void setTypeId(String typeId) {
+    this.typeId = typeId;
   }
 
   public String getName() {
@@ -65,7 +65,7 @@ public class ObjectDefinitionEntity {
   public String toString() {
     return "ObjectDefinitionEntity{"
         + "id="
-        + id
+        + typeId
         + ", name='"
         + name
         + '\''

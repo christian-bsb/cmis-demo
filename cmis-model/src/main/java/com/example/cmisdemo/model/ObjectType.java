@@ -5,23 +5,23 @@ import java.util.List;
 
 public class ObjectType {
 
-  String id = null;
+  String typeId = null;
   String displayName = "";
   List<PropertyDefinition> propertyDefinitions = new LinkedList<>();
 
   public ObjectType() {}
 
   public ObjectType(String id, String displayName) {
-    this.id = id;
+    this.typeId = id;
     this.displayName = displayName;
   }
 
-  public String getId() {
-    return id;
+  public String getTypeId() {
+    return typeId;
   }
 
-  public void setId(String id) {
-    this.id = id;
+  public void setTypeId(String typeId) {
+    this.typeId = typeId;
   }
 
   public String getDisplayName() {
@@ -44,7 +44,7 @@ public class ObjectType {
   public String toString() {
     return "ObjectType{"
         + "id='"
-        + id
+        + typeId
         + '\''
         + ", displayName='"
         + displayName

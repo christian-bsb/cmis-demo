@@ -35,7 +35,7 @@ public class ObjectDefinitionController {
   @GetMapping(path = "/repository/{repositoryId}/type/{typeId}", produces = "application/json")
   public ObjectType getTypeDeﬁnition(
       @PathVariable String repositoryId, @PathVariable String typeId) {
-    ObjectDefinitionEntity objDefE = objDefServ.getObjectDef(repositoryId, Long.parseLong(typeId));
+    ObjectDefinitionEntity objDefE = objDefServ.getObjectDefByTypeId(repositoryId, typeId);
     ObjectType objDef = objDefDto.objDefEToObjType(objDefE);
     LOGGER.info("request rep: " + repositoryId + " type: " + typeId + " obj def: " + objDef);
     return objDef;

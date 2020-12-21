@@ -19,7 +19,7 @@ public class PropertyDefinitionEntity {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long pk;
 
-  private String id;
+  private String propertyId;
 
   private String name;
 
@@ -41,12 +41,12 @@ public class PropertyDefinitionEntity {
     this.pk = pk;
   }
 
-  public String getId() {
-    return id;
+  public String getPropertyId() {
+    return propertyId;
   }
 
-  public void setId(String id) {
-    this.id = id;
+  public void setPropertyId(String propertyId) {
+    this.propertyId = propertyId;
   }
 
   public String getName() {
