@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.Map.Entry;
 import javax.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class TypeController {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(TypeController.class);
 
   @Autowired TypeDefinitionRepository typeDefinitionRepository;
 
@@ -41,6 +45,10 @@ public class TypeController {
     }
 
     model.addAttribute("type", typeFormBean);
+    model.addAttribute("repositoryId", repositoryId);
+    model.addAttribute("path", "/repository/" + repositoryId + "/type/" + typeId + "/property");
+    model.addAttribute("typeId", typeId);
+
     return "types";
   }
 
@@ -66,6 +74,38 @@ public class TypeController {
     typeDefinitionRepository.createType(objectType);
 
     return "newtype";
+  }
+
+  @RequestMapping(
+      value = "/repository/{repositoryId}/type/{typeId}/property",
+      method = RequestMethod.GET)
+  public String addProperty(
+      @PathVariable String repositoryId,
+      @PathVariable String typeId,
+      @RequestParam String id,
+      @RequestParam String displayname,
+      Model model)
+      throws Exception {
+
+    LOGGER.info("repository: " + repositoryId + "type: " + typeId + " add property: " + id);
+
+    model.addAttribute("repositoryId", repositoryId);
+    model.addAttribute("typeId", typeId);
+    model.addAttribute("path", "/repository/" + repositoryId + "/type/" + typeId + "/property");
+
+    TypeFormBean typeFormBean = new TypeFormBean();
+    ObjectType objectType = typeDefinitionRepository.getTypeDefinition(typeId);
+    if (objectType != null) {
+      objectType
+          .getPropertyDefinitions()
+          .add(new PropertyDefinition(id, displayname, PropertyType.STRING, Cardinality.SINGLE));
+      typeDefinitionRepository.updateType(objectType);
+    }
+
+    model.addAttribute("type", typeFormBean);
+
+    // return "redirect:/repository/" + repositoryId + "/type/" + typeId + "/update";
+    return "types";
   }
 
   @RequestMapping(value = "/saveType", method = RequestMethod.POST)

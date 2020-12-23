@@ -2,20 +2,29 @@
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
     <title>Getting Started: Handling Form Submission</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<h1 th:text="${type.displayName}">Type</h1>
-<form action="#" th:action="@{/saveBean}" method="post">
-    <table border="1">
-        <tr th:each="prop: ${type.propertyDefinitions}">
-            <td><label th:text="${prop.getName()}" /></td>
-            <td><input type="text" th:name="${prop.getName()}" /></td>
-        </tr>
-        <tr>
-            <td><input type="submit" value="Submit" /></td>
-        </tr>
-    </table>
+<h1 th:text="${type.id}">Type</h1>
+<table border="1">
+    <tr th:each="prop: ${type.propertyDefinitions}">
+        <td>
+            <div th:text="${prop.getName()}"/>
+        </td>
+        <td>
+            <div type="text" th:name="${prop.getName()}"/>
+        </td>
+    </tr>
+</table>
+<form th:action="@{${path}}" method="get">
+
+    <p><label for="id">Property id</label><br>
+        <input type="text" id="id" name="id"></p>
+    <p><label for="displayname">display name:</label><br>
+        <input type="text" id="displayname" name="displayname"></p>
+    <p><input type="submit" value="Submit"/></p>
+
+
 </form>
 
 </body>
