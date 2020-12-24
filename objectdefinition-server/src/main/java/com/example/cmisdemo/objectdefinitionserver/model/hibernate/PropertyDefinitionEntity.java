@@ -80,4 +80,16 @@ public class PropertyDefinitionEntity {
   public void setCardinality(Cardinality cardinality) {
     this.cardinality = cardinality;
   }
+
+  @Override
+  public String toString() {
+    return "PropertyDefinitionEntity{"
+        + "propertyId='"
+        + propertyId
+        + '\''
+        + ", name='"
+        + name
+        + '\''
+        + '}';
+  }
 }

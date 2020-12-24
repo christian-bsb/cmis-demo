@@ -22,9 +22,10 @@ public class TypeDefinitionRepository {
 
   public ObjectType createType(ObjectType objectType) throws Exception {
     String url = baseUrl + "/repository/1/type/" + objectType.getTypeId() + "/update";
+    LOGGER.info("createType: url:" + url);
     HttpResponse<String> response =
         HttpUtil.sendPostRequest(url, mapper.writeValueAsString(objectType));
-    LOGGER.info(response.body());
+    // LOGGER.info(response.body());
     String objectTypeJsonString = response.body();
     ObjectType respObjectType = mapper.readValue(objectTypeJsonString, ObjectType.class);
 

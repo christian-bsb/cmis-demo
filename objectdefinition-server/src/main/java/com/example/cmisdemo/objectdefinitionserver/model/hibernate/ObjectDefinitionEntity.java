@@ -17,6 +17,8 @@ public class ObjectDefinitionEntity {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long pk;
 
+  String propertyId;
+
   private String typeId;
 
   private String name;
@@ -42,6 +44,14 @@ public class ObjectDefinitionEntity {
     this.typeId = typeId;
   }
 
+  public String getPropertyId() {
+    return propertyId;
+  }
+
+  public void setPropertyId(String propertyId) {
+    this.propertyId = propertyId;
+  }
+
   public String getName() {
     return name;
   }
@@ -59,6 +69,25 @@ public class ObjectDefinitionEntity {
     for (PropertyDefinitionEntity prop : propertyDefinitions) {
       prop.setObjectDefinition(this);
     }
+  }
+
+  public void addPropertyDefinition(PropertyDefinitionEntity propertyDefinition) {
+    this.propertyDefinitions.add(propertyDefinition);
+    propertyDefinition.setObjectDefinition(this);
+  }
+
+  public PropertyDefinitionEntity getPropertyDefinitionById(String propertyId) {
+
+    if (propertyId == null) {
+      throw new RuntimeException("propertyId is null");
+    }
+
+    for (PropertyDefinitionEntity propDefE : propertyDefinitions) {
+      if (propertyId.equals(propDefE.getPropertyId())) {
+        return propDefE;
+      }
+    }
+    return null;
   }
 
   @Override
