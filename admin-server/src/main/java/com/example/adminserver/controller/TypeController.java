@@ -2,12 +2,7 @@ package com.example.adminserver.controller;
 
 import com.example.adminserver.model.TypeFormBean;
 import com.example.cmisdemo.model.*;
-import example.com.cmisservices.repository.DocumentRepository;
 import example.com.cmisservices.repository.TypeDefinitionRepository;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.Map.Entry;
-import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +16,6 @@ public class TypeController {
   private static final Logger LOGGER = LoggerFactory.getLogger(TypeController.class);
 
   @Autowired TypeDefinitionRepository typeDefinitionRepository;
-
-  @Autowired DocumentRepository documentRepository;
 
   @GetMapping("/repository/{repositoryId}/type/insert")
   public String createType(@PathVariable String repositoryId, Model model) throws Exception {
@@ -106,23 +99,5 @@ public class TypeController {
 
     // return "redirect:/repository/" + repositoryId + "/type/" + typeId + "/update";
     return "properties";
-  }
-
-  @RequestMapping(value = "/saveType", method = RequestMethod.POST)
-  public String saveBean(HttpServletRequest req) throws Exception {
-    Map<String, String[]> parameterMap = req.getParameterMap();
-    Document document = new Document();
-
-    for (Entry<String, String[]> entry : parameterMap.entrySet()) {
-      System.out.println(entry.getKey() + " = " + Arrays.toString(entry.getValue()));
-      if ("id".equals(entry.getKey())) {
-        PropertyDefinition iddef =
-            new PropertyDefinition("id", "id", PropertyType.STRING, Cardinality.SINGLE);
-        document.getProperties().add(new CmisProperty(iddef, entry.getValue()));
-      }
-    }
-
-    documentRepository.createDocument(document);
-    return "redirect:/repository/1/type/1/form";
   }
 }
