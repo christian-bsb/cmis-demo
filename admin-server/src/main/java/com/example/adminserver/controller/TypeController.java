@@ -49,7 +49,7 @@ public class TypeController {
     model.addAttribute("path", "/repository/" + repositoryId + "/type/" + typeId + "/property");
     model.addAttribute("typeId", typeId);
 
-    return "types";
+    return "properties";
   }
 
   @RequestMapping(value = "/newtype", method = RequestMethod.GET)
@@ -105,7 +105,7 @@ public class TypeController {
     model.addAttribute("type", typeFormBean);
 
     // return "redirect:/repository/" + repositoryId + "/type/" + typeId + "/update";
-    return "types";
+    return "properties";
   }
 
   @RequestMapping(value = "/saveType", method = RequestMethod.POST)
