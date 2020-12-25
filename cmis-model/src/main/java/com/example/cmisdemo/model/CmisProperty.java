@@ -27,4 +27,9 @@ public class CmisProperty {
   public void setValue(Object value) {
     this.value = value;
   }
+
+  @Override
+  public String toString() {
+    return "CmisProperty{" + "definition=" + definition + ", value=" + value + '}';
+  }
 }

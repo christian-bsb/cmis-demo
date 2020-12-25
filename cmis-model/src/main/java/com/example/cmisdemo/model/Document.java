@@ -16,4 +16,9 @@ public class Document {
   public List<CmisProperty> getProperties() {
     return properties;
   }
+
+  @Override
+  public String toString() {
+    return "Document{" + "properties=" + properties + '}';
+  }
 }

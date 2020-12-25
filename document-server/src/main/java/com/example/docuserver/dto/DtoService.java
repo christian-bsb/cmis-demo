@@ -13,28 +13,35 @@ import org.springframework.stereotype.Service;
 @Service
 public class DtoService {
 
-  public List<Document> cmisDocsToDocuments(List<CmisDoc> cmisDocs){
+  public List<Document> cmisDocsToDocuments(List<CmisDoc> cmisDocs) {
     return cmisDocs.stream().map(this::cmisDocToDocument).collect(Collectors.toList());
   }
 
-  public Document cmisDocToDocument(CmisDoc cmisDoc){
+  public Document cmisDocToDocument(CmisDoc cmisDoc) {
     // todo get type
-    PropertyDefinition iddef = new PropertyDefinition("id", "id", PropertyType.STRING, Cardinality.SINGLE);
+    PropertyDefinition iddef =
+        new PropertyDefinition("id", "id", PropertyType.STRING, Cardinality.SINGLE);
 
     Document document = new Document();
-    document.getProperties().add( new CmisProperty(iddef, cmisDoc.getId()));
+    document.getProperties().add(new CmisProperty(iddef, cmisDoc.getId()));
     return document;
   }
 
-  public CmisDoc documentToCmisDoc(Document document){
+  public CmisDoc documentToCmisDoc(Document document) {
 
     CmisDoc cmisDoc = new CmisDoc();
     cmisDoc.setId("undefined");
-    for ( CmisProperty cmisProperty : document.getProperties()){
-      if (cmisProperty.getDefinition().getDisplayName().equals("id"))
-      cmisDoc.setId(cmisProperty.getValue().toString());
+    for (CmisProperty cmisProperty : document.getProperties()) {
+      if (cmisProperty.getDefinition().getDisplayName().equals("id")) {
+        cmisDoc.setId(cmisProperty.getValue().toString());
+      } else {
+        cmisDoc
+            .getTextMap()
+            .put(
+                cmisProperty.getDefinition().getPropertyId() + "_t",
+                cmisProperty.getValue().toString());
+      }
     }
     return cmisDoc;
   }
-
 }

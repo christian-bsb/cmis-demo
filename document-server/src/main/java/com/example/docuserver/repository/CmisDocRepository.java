@@ -9,9 +9,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @Qualifier("cmisDocRepository")
-public interface CmisDocRepository extends SolrCrudRepository<CmisDoc,String> {
+public interface CmisDocRepository extends SolrCrudRepository<CmisDoc, String> {
 
   @Query(value = "*:*")
   List<CmisDoc> getCmisDocs();
-
 }

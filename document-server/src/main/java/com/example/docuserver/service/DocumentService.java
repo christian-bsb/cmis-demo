@@ -11,17 +11,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class DocumentService {
 
-  @Autowired
-  CmisDocRepository cmisDocRepository;
+  @Autowired CmisDocRepository cmisDocRepository;
 
-  @Autowired
-  DtoService dtoService;
+  @Autowired DtoService dtoService;
 
-  public List<Document> getDocuments(){
+  public List<Document> getDocuments() {
     List<CmisDoc> cmisDocs = cmisDocRepository.getCmisDocs();
     return dtoService.cmisDocsToDocuments(cmisDocs);
   }
-  public Document insert( Document document){
+
+  public Document insert(Document document) {
     CmisDoc cmisDoc = dtoService.documentToCmisDoc(document);
     CmisDoc saved = cmisDocRepository.save(cmisDoc);
     return dtoService.cmisDocToDocument(saved);

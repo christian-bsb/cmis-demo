@@ -36,28 +36,38 @@ public class FormController {
     FormBean formBean = new FormBean();
     formBean.getProperties().add(new FormBeanProperty("id", ""));
     for (PropertyDefinition propertyDefinition : objectType.getPropertyDefinitions()) {
-      formBean.getProperties().add(new FormBeanProperty(propertyDefinition.getDisplayName(), ""));
+      formBean.getProperties().add(new FormBeanProperty(propertyDefinition.getPropertyId(), ""));
     }
 
     model.addAttribute("formBean", formBean);
+    model.addAttribute("path", "/repository/" + repositoryId + "/type/" + typeId + "/instance");
     return "form";
   }
 
-  @RequestMapping(value = "/saveBean", method = RequestMethod.POST)
-  public String saveBean(HttpServletRequest req) throws Exception {
+  @RequestMapping(
+      value = "/repository/{repositoryId}/type/{typeId}/instance",
+      method = RequestMethod.POST)
+  public String saveBean(
+      @PathVariable String repositoryId, @PathVariable String typeId, HttpServletRequest req)
+      throws Exception {
     Map<String, String[]> parameterMap = req.getParameterMap();
+    System.out.println("****** " + parameterMap);
     Document document = new Document();
 
     for (Entry<String, String[]> entry : parameterMap.entrySet()) {
       System.out.println(entry.getKey() + " = " + Arrays.toString(entry.getValue()));
-      if ("id".equals(entry.getKey())) {
+      /*if ("id".equals(entry.getKey())) {
         PropertyDefinition iddef =
             new PropertyDefinition("id", "id", PropertyType.STRING, Cardinality.SINGLE);
         document.getProperties().add(new CmisProperty(iddef, entry.getValue()));
-      }
+      }*/
+      PropertyDefinition propDef =
+          new PropertyDefinition(
+              entry.getKey(), entry.getKey(), PropertyType.STRING, Cardinality.SINGLE);
+      document.getProperties().add(new CmisProperty(propDef, entry.getValue()));
     }
 
     documentRepository.createDocument(document);
-    return "redirect:/repository/1/type/1/form";
+    return "redirect:/repository/" + repositoryId + "/type/" + typeId + "/form";
   }
 }
