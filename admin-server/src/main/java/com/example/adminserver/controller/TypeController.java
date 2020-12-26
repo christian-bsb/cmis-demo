@@ -39,7 +39,10 @@ public class TypeController {
 
     model.addAttribute("type", typeFormBean);
     model.addAttribute("repositoryId", repositoryId);
-    model.addAttribute("path", "/repository/" + repositoryId + "/type/" + typeId + "/property");
+    model.addAttribute(
+        "updatePath", "/repository/" + repositoryId + "/type/" + typeId + "/property/update");
+    model.addAttribute(
+        "deletePath", "/repository/" + repositoryId + "/type/" + typeId + "/property/delete");
     model.addAttribute("typeId", typeId);
 
     return "properties";
@@ -70,7 +73,7 @@ public class TypeController {
   }
 
   @RequestMapping(
-      value = "/repository/{repositoryId}/type/{typeId}/property",
+      value = "/repository/{repositoryId}/type/{typeId}/property/update",
       method = RequestMethod.GET)
   public String addProperty(
       @PathVariable String repositoryId,
@@ -80,11 +83,10 @@ public class TypeController {
       Model model)
       throws Exception {
 
-    LOGGER.info("repository: " + repositoryId + "type: " + typeId + " add property: " + id);
+    LOGGER.info("repository: update " + repositoryId + "type: " + typeId + " add property: " + id);
 
     model.addAttribute("repositoryId", repositoryId);
     model.addAttribute("typeId", typeId);
-    model.addAttribute("path", "/repository/" + repositoryId + "/type/" + typeId + "/property");
 
     TypeFormBean typeFormBean = new TypeFormBean();
     ObjectType objectType = typeDefinitionRepository.getTypeDefinition(typeId);
@@ -98,6 +100,38 @@ public class TypeController {
     model.addAttribute("type", typeFormBean);
 
     // return "redirect:/repository/" + repositoryId + "/type/" + typeId + "/update";
+    return "properties";
+  }
+
+  @RequestMapping(
+      value = "/repository/{repositoryId}/type/{typeId}/property/delete",
+      method = RequestMethod.GET)
+  public String deleteProperty(
+      @PathVariable String repositoryId,
+      @PathVariable String typeId,
+      @RequestParam String id,
+      @RequestParam String displayname,
+      Model model)
+      throws Exception {
+
+    LOGGER.info(
+        "repository: delete " + repositoryId + "type: " + typeId + " delerte property: " + id);
+
+    model.addAttribute("repositoryId", repositoryId);
+    model.addAttribute("typeId", typeId);
+
+    TypeFormBean typeFormBean = new TypeFormBean();
+    ObjectType objectType = typeDefinitionRepository.getTypeDefinition(typeId);
+    if (objectType != null) {
+      for (int idx = 0; idx < objectType.getPropertyDefinitions().size(); idx++) {
+        if (objectType.getPropertyDefinitions().get(idx).getPropertyId().equals(id)) {
+          objectType.getPropertyDefinitions().remove(idx);
+        }
+      }
+      typeDefinitionRepository.updateType(objectType);
+    }
+
+    model.addAttribute("type", typeFormBean);
     return "properties";
   }
 }

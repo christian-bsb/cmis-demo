@@ -25,8 +25,9 @@ public class ObjectDefinitionService {
     if (storedObjDefEs.isEmpty()) {
       return objectDefinitionRepository.save(objDefE);
     } else {
-      return objectDefinitionRepository.save(
-          entitiyToObjDefE.objDefEToObjDefE(objDefE, storedObjDefEs.get(0)));
+      ObjectDefinitionEntity updObjDefE =
+          entitiyToObjDefE.objDefEToObjDefE(objDefE, storedObjDefEs.get(0));
+      return objectDefinitionRepository.save(updObjDefE);
     }
   }
 

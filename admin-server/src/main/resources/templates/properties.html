@@ -9,20 +9,21 @@
 <table border="1">
     <tr th:each="prop: ${type.propertyDefinitions}">
         <td>
-            <div th:text="${prop.getName()}"/>
+            <div th:text="${prop.propertyId}"/>
         </td>
         <td>
-            <div type="text" th:name="${prop.getName()}"/>
+            <div type="text" th:name="${prop.propertyId}"/>
         </td>
     </tr>
 </table>
-<form th:action="@{${path}}" method="get">
+<form method="get">
 
     <p><label for="id">Property id</label><br>
         <input type="text" id="id" name="id"></p>
     <p><label for="displayname">display name:</label><br>
         <input type="text" id="displayname" name="displayname"></p>
-    <p><input type="submit" value="Submit"/></p>
+    <p><input type="submit" value="Update" th:formaction="@{${updatePath}}" /></p>
+    <p><input type="submit" value="Delete" th:formaction="@{${deletePath}}" /></p>
 
 
 </form>
