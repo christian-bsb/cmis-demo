@@ -62,11 +62,11 @@ public class TypeController {
   }
 
   @RequestMapping(value = "/newtype2", method = RequestMethod.GET)
-  public String newType2(@RequestParam String id) throws Exception {
+  public String newType2(@RequestParam String id, @RequestParam String dn) throws Exception {
 
     ObjectType objectType = new ObjectType();
     objectType.setTypeId(id);
-    objectType.setDisplayName("displayname of " + id);
+    objectType.setDisplayName(dn);
     typeDefinitionRepository.createType(objectType);
 
     return "newtype";

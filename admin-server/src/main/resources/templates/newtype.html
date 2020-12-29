@@ -3,24 +3,34 @@
 <head>
     <title>Create a new type definiton</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 </head>
-<body>
-<h1>New Type</h1>
-<form action="#" th:action="@{/newtype}" method="get">
-    <label for="fname">Id:</label><br>
-    <input type="text" id="fname" name="id"><br>
-    <label for="lname">display name:</label><br>
-    <input type="text" id="lname" name="diplayname">
-    <input type="submit" value="Submit" />
-</form>
 
-<hr>
 
-<form action="/newtype2">
+
+<!-- form action="/newtype2">
     <label for="fname">Id:</label><br>
     <input type="text" id="fname" name="id"><br>
     <input type="submit" value="Submit" />
-</form>
+</form  -->
+<div class="container" role="main">
+    <h1>New Type</h1>
 
+    <form action="/newtype2">
+    <div class="form-group">
+        <label for="idInput">Id</label>
+        <input type="text" class="form-control" id="idInput" name="id" aria-describedby="idHelp" placeholder="Enter type id">
+        <small id="idHelp" class="form-text text-muted">Eindeutige sprechende id fuer den Typ. z.b. buch</small>
+    </div>
+    <div class="form-group">
+        <label for="displayNameInput">Password</label>
+        <input type="text" class="form-control" id="displayNameInput" name="dn" placeholder="display name">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 </html>
