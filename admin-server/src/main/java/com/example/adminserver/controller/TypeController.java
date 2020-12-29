@@ -48,19 +48,6 @@ public class TypeController {
     return "properties";
   }
 
-  @RequestMapping(value = "/newtype", method = RequestMethod.GET)
-  public String newType(@RequestParam String id, @RequestParam String displayname)
-      throws Exception {
-
-    ObjectType objectType = new ObjectType();
-    objectType.setTypeId(id);
-    objectType.setDisplayName(displayname);
-
-    typeDefinitionRepository.createType(objectType);
-
-    return "redirect:/repository/1/type/" + id + "/form/update";
-  }
-
   @RequestMapping(value = "/newtype2", method = RequestMethod.GET)
   public String newType2(@RequestParam String id, @RequestParam String dn) throws Exception {
 
