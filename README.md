@@ -38,3 +38,32 @@ drop table property_definition cascade;
 select * from obj_definition
 
 select * from property_definition
+
+## create cms strapi database
+
+create user strapi with password 'strapi';
+
+CREATE DATABASE strapi;
+
+grant all privileges on database strapi to strapi;
+
+## cms starten
+
+sudo docker run -it \
+  -e DATABASE_CLIENT=postgres \
+  -e DATABASE_NAME=strapi \
+  -e DATABASE_HOST=localhost \
+  -e DATABASE_PORT=5433 \
+  -e DATABASE_USERNAME=strapi \
+  -e DATABASE_PASSWORD=strapi \
+  -p 1337:1337 \
+  -v `pwd`/project-name:/srv/app \
+  strapi/strapi
+
+### connection errors
+https://stackoverflow.com/questions/33357567/econnrefused-for-postgres-on-nodejs-with-dockers
+
+# Components
+## CMS Strapi
+  * https://strapi.io/
+  * im docker: https://github.com/strapi/strapi-docker
