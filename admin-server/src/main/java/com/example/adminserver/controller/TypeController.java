@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class TypeController {
 
@@ -17,10 +19,18 @@ public class TypeController {
 
   @Autowired TypeDefinitionRepository typeDefinitionRepository;
 
+  @GetMapping("/repository/{repositoryId}/types")
+  public String listTypes(@PathVariable String repositoryId, Model model) throws Exception {
+    List<ObjectType> objectTypes = typeDefinitionRepository.getTypeDefinitions();
+    model.addAttribute("types", objectTypes);
+    return "typelist";
+  }
+
   @GetMapping("/repository/{repositoryId}/type/insert")
   public String createType(@PathVariable String repositoryId, Model model) throws Exception {
 
     TypeFormBean typeFormBean = new TypeFormBean();
+    model.addAttribute("type", typeFormBean);
     return "newtype";
   }
 

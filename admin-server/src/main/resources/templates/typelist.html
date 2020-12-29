@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*  Each token will be replaced by their respective titles in the resulting page. */-->
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Task List</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+<!--/* Standard layout can be mixed with Layout Dialect */-->
+<div th:replace="fragments/basic :: header">
+    ...
+</div>
+<div class="container">
+    <div layout:fragment="content">
+        <h1>Types</h1>
+        <ul class="list-group">
+            <!-- li th:each="type: ${types}" class="list-group-item" th:text="${type.typeId}">Cras justo odio</li -->
+            <a th:each="type: ${types}" th:href="@{|/repository/1/type/${type.typeId}/update|}"
+               class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1" th:text="${type.typeId}">List group item heading</h5>
+                    <small>3 days ago</small>
+                </div>
+                <p class="mb-1" th:text="${type.displayName}">as sed diam eget ris</p>
+                <small>Donec id elit non mi porta.</small>
+            </a>
+        </ul>
+    </div>
+    <div th:replace="fragments/basic :: footer">&copy; 2014 The Static Templates</div>
+</div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>
