@@ -13,6 +13,6 @@ public class MainController {
       @RequestParam(name = "name", required = false, defaultValue = "World") String name,
       Model model) {
     model.addAttribute("name", name);
-    return "layout";
+    return "home";
   }
 }

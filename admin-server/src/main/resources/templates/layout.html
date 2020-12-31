@@ -4,6 +4,8 @@
     <!--/*  Each token will be replaced by their respective titles in the resulting page. */-->
     <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Task List</title>
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+
 </head>
 <body>
 <!--/* Standard layout can be mixed with Layout Dialect */-->
@@ -26,8 +28,8 @@
             Phasellus et placerat elit.
         </p>
     </div>
-    <div th:replace="fragments/basic :: footer">&copy; 2014 The Static Templates</div>
 </div>
+<div th:replace="fragments/basic :: footer">&copy; 2014 The Static Templates</div>
 
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>

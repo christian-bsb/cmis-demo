@@ -4,6 +4,8 @@
     <!--/*  Each token will be replaced by their respective titles in the resulting page. */-->
     <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Task List</title>
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+
 </head>
 <body>
 <!--/* Standard layout can be mixed with Layout Dialect */-->
@@ -11,40 +13,52 @@
     ...
 </div>
 <div class="container">
-    <h1 th:text="${type.id}">Type</h1>
 
-    <ul class="list-group">
-        <!-- li th:each="type: ${types}" class="list-group-item" th:text="${type.typeId}">Cras justo odio</li -->
-        <a th:each="prop: ${type.propertyDefinitions}" th:href="@{|/repository/1/type/${type.id}/update|}"
-           class="list-group-item list-group-item-action flex-column align-items-start">
-            <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1" th:text="${prop.propertyId}">List group item heading</h5>
-                <small>3 days ago</small>
-            </div>
-            <p class="mb-1" th:text="${prop.displayName}">as sed diam eget ris</p>
-            <small>Donec id elit non mi porta.</small>
-        </a>
-    </ul>
-
-
-
-    <form method="get">
-        <div class="form-group">
-            <label for="idInput">Property Id</label>
-            <input type="text" class="form-control" id="idInput" name="id" aria-describedby="idHelp" placeholder="Enter type id">
-            <small id="idHelp" class="form-text text-muted">Eindeutige sprechende id fuer die Property z.B. autor</small>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4" th:text="${type.id}">Fluid jumbotron</h1>
+            <p class="lead" th:text="${type.displayName}">This</p>
         </div>
-        <div class="form-group">
-            <label for="displayNameInput">display name</label>
-            <input type="text" class="form-control" id="displayNameInput" name="dn" placeholder="display name">
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Properties</h5>
+            <ul class="list-group">
+                <!-- li th:each="type: ${types}" class="list-group-item" th:text="${type.typeId}">Cras justo odio</li -->
+                <a th:each="prop: ${type.propertyDefinitions}" th:href="@{|/repository/1/type/${type.id}/update|}"
+                   class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1" th:text="${prop.propertyId}">List group item heading</h5>
+                        <small>3 days ago</small>
+                    </div>
+                    <p class="mb-1" th:text="${prop.displayName}">as sed diam eget ris</p>
+                    <small>Donec id elit non mi porta.</small>
+                </a>
+            </ul>
         </div>
-        <button type="submit"  class="btn btn-primary" th:formaction="@{${updatePath}}" >Update</button>
-        <button type="submit"  class="btn btn-primary" th:formaction="@{${deletePath}}" >Delete</button>
+    </div>
 
-        <!-- p><input type="submit" value="Update" th:formaction="@{${updatePath}}" /></p>
-        <p><input type="submit" value="Delete" th:formaction="@{${deletePath}}" /></p -->
-
-    </form>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Update or delete Property</h5>
+            <form method="get">
+                <div class="form-group">
+                    <label for="idInput">Property Id</label>
+                    <input type="text" class="form-control" id="idInput" name="id" aria-describedby="idHelp"
+                           placeholder="Enter type id">
+                    <small id="idHelp" class="form-text text-muted">Eindeutige sprechende id fuer die Property z.B.
+                        autor</small>
+                </div>
+                <div class="form-group">
+                    <label for="displayNameInput">display name</label>
+                    <input type="text" class="form-control" id="displayNameInput" name="dn" placeholder="display name">
+                </div>
+                <button type="submit" class="btn btn-primary" th:formaction="@{${updatePath}}">Update</button>
+                <button type="submit" class="btn btn-primary" th:formaction="@{${deletePath}}">Delete</button>
+            </form>
+        </div>
+    </div>
 
 </div>
 

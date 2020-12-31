@@ -4,6 +4,8 @@
     <!--/*  Each token will be replaced by their respective titles in the resulting page. */-->
     <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Task List</title>
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+
 </head>
 <body>
 <!--/* Standard layout can be mixed with Layout Dialect */-->
@@ -12,7 +14,13 @@
 </div>
 <div class="container">
     <div layout:fragment="content">
-        <h1>New Type</h1>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">New Objekttyp</h1>
+                <p class="lead">Definiere einen neuen Objekttypen mit id und display name</p>
+            </div>
+        </div>
+
 
         <form action="/newtype2">
             <div class="form-group">
@@ -27,8 +35,8 @@
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
-    <div th:replace="fragments/basic :: footer">&copy; 2014 The Static Templates</div>
 </div>
+<div th:replace="fragments/basic :: footer">&copy; 2014 The Static Templates</div>
 
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
