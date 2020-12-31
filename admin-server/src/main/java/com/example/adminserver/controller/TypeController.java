@@ -3,14 +3,13 @@ package com.example.adminserver.controller;
 import com.example.adminserver.model.TypeFormBean;
 import com.example.cmisdemo.model.*;
 import example.com.cmisservices.repository.TypeDefinitionRepository;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Controller
 public class TypeController {
@@ -76,7 +75,7 @@ public class TypeController {
       @PathVariable String repositoryId,
       @PathVariable String typeId,
       @RequestParam String id,
-      @RequestParam String displayname,
+      @RequestParam String dn,
       Model model)
       throws Exception {
 
@@ -90,7 +89,7 @@ public class TypeController {
     if (objectType != null) {
       objectType
           .getPropertyDefinitions()
-          .add(new PropertyDefinition(id, displayname, PropertyType.STRING, Cardinality.SINGLE));
+          .add(new PropertyDefinition(id, dn, PropertyType.STRING, Cardinality.SINGLE));
       typeDefinitionRepository.updateType(objectType);
     }
 
