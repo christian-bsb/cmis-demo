@@ -34,14 +34,16 @@ public class FormController {
     document.getProperties().add(new CmisProperty(iddef, "id:777"));
 
     FormBean formBean = new FormBean();
+    formBean.setTypeId(objectType.getTypeId());
+    formBean.setDisplayName(objectType.getDisplayName());
     formBean.getProperties().add(new FormBeanProperty("id", ""));
     for (PropertyDefinition propertyDefinition : objectType.getPropertyDefinitions()) {
       formBean.getProperties().add(new FormBeanProperty(propertyDefinition.getPropertyId(), ""));
     }
 
-    model.addAttribute("formBean", formBean);
+    model.addAttribute("type", formBean);
     model.addAttribute("path", "/repository/" + repositoryId + "/type/" + typeId + "/instance");
-    return "form";
+    return "generic";
   }
 
   @RequestMapping(

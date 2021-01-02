@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*  Each token will be replaced by their respective titles in the resulting page. */-->
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Task List</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+
+</head>
+<body>
+<!--/* Standard layout can be mixed with Layout Dialect */-->
+<div th:replace="fragments/basic :: header">
+    ...
+</div>
+<div class="container">
+    <div layout:fragment="content">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4" th:text="${type.typeId}">Allgemeine Instanz Form</h1>
+                <p class="lead" th:text="${type.displayName}">Form fuer verschiedene Objekttypen</p>
+            </div>
+        </div>
+
+        <form action="#" th:action="@{${path}}" method="post">
+
+            <div th:each="prop: ${type.properties}" class="form-group">
+                <label th:for="${prop.getName()}" th:text="${prop.getName()}">Password</label>
+                <input type="text" class="form-control" th:id="${prop.getName()}" th:name="${prop.getName()}" >
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+<div th:replace="fragments/basic :: footer">&copy; 2014 The Static Templates</div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

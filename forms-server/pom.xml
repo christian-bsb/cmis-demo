@@ -17,6 +17,8 @@
 	<properties>
 		<java.version>14</java.version>
 		<version.maven-fmt-plugin>2.9</version.maven-fmt-plugin>
+		<bootstrap.version>4.0.0-2</bootstrap.version>
+		<webjars-locator.version>0.30</webjars-locator.version>
 	</properties>
 
 	<dependencies>
@@ -42,6 +44,16 @@
 			<groupId>com.example</groupId>
 			<artifactId>cmis-services</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>${bootstrap.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>webjars-locator</artifactId>
+			<version>${webjars-locator.version}</version>
 		</dependency>
 	</dependencies>
 
