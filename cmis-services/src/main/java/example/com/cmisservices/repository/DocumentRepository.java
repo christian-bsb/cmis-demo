@@ -28,4 +28,15 @@ public class DocumentRepository {
 
     return objectTypeJsonString;
   }
+
+  public Document getDocument(String repositoryId, String documentId) throws Exception {
+
+    String url = baseUrl + "/repository/" + repositoryId + "/document/" + documentId;
+    HttpResponse<String> response = HttpUtil.sendGetRequest(url);
+    LOGGER.info(response.body());
+    String resp = response.body();
+    Document respDoc = mapper.readValue(resp, Document.class);
+
+    return respDoc;
+  }
 }

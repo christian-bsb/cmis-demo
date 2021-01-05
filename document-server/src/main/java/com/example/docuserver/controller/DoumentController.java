@@ -38,8 +38,10 @@ public class DoumentController {
       path = "/repository/{repositoryId}/document/{documentId}",
       produces = "application/json")
   public Document getDocument(@PathVariable String repositoryId, @PathVariable String documentId) {
-    LOGGER.info("request rep: " + repositoryId + " type: " + documentId);
-    return new Document();
+    Document document = documentService.getDocumentById(documentId);
+    LOGGER.info(
+        "request repositoryId: " + repositoryId + " documentid: " + documentId + " " + document);
+    return document;
   }
 
   @GetMapping(path = "/repository/{repositoryId}/documents", produces = "application/json")

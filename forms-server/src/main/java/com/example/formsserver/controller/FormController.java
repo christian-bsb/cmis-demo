@@ -46,6 +46,33 @@ public class FormController {
     return "generic";
   }
 
+  @GetMapping("/repository/{repositoryId}/document/{documentId}")
+  public String editDocument(
+      @PathVariable String repositoryId, @PathVariable String documentId, Model model)
+      throws Exception {
+
+    Document document = documentRepository.getDocument(repositoryId, documentId);
+    System.out.println("*********** " + document);
+
+    String typeId = "book";
+    ObjectType objectType = typeDefinitionRepository.getTypeDefinition(typeId);
+
+    PropertyDefinition iddef =
+        new PropertyDefinition("id", "id", PropertyType.STRING, Cardinality.SINGLE);
+
+    FormBean formBean = new FormBean();
+    formBean.setTypeId(objectType.getTypeId());
+    formBean.setDisplayName(objectType.getDisplayName());
+    formBean.getProperties().add(new FormBeanProperty("id", ""));
+    for (PropertyDefinition propertyDefinition : objectType.getPropertyDefinitions()) {
+      formBean.getProperties().add(new FormBeanProperty(propertyDefinition.getPropertyId(), ""));
+    }
+
+    model.addAttribute("type", formBean);
+    model.addAttribute("path", "/repository/" + repositoryId + "/type/" + typeId + "/instance");
+    return "generic";
+  }
+
   @RequestMapping(
       value = "/repository/{repositoryId}/type/{typeId}/instance",
       method = RequestMethod.POST)

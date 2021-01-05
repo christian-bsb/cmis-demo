@@ -9,3 +9,7 @@ spring:
   data:
     solr:
       host: http://localhost:8983/solr
+
+logging:
+  level:
+    root: INFO

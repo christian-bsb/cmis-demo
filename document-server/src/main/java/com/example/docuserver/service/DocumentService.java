@@ -20,9 +20,19 @@ public class DocumentService {
     return dtoService.cmisDocsToDocuments(cmisDocs);
   }
 
+  public Document getDocumentById(String documentId) {
+    // CmisDoc cmisDoc = dtoService.documentToCmisDoc(document);
+    CmisDoc cmisDoc = cmisDocRepository.findById(decorate(documentId)).get();
+    return dtoService.cmisDocToDocument(cmisDoc);
+  }
+
   public Document insert(Document document) {
     CmisDoc cmisDoc = dtoService.documentToCmisDoc(document);
     CmisDoc saved = cmisDocRepository.save(cmisDoc);
     return dtoService.cmisDocToDocument(saved);
+  }
+
+  String decorate(String value) {
+    return "[" + value + "]";
   }
 }
