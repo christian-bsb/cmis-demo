@@ -92,7 +92,9 @@ public class FormController {
       PropertyDefinition propDef =
           new PropertyDefinition(
               entry.getKey(), entry.getKey(), PropertyType.STRING, Cardinality.SINGLE);
-      document.getProperties().add(new CmisProperty(propDef, entry.getValue()));
+      if (entry.getValue().length == 1) {
+        document.getProperties().add(new CmisProperty(propDef, entry.getValue()[0]));
+      }
     }
 
     documentRepository.createDocument(document);

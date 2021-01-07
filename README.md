@@ -12,17 +12,23 @@
 ## URLs
   * cmis server: http://localhost:8085
     * list all types: http://localhost:8085/repository/1/types
+    
   * forms server: http://localhost:8086
     * show a form: http://localhost:8086/repository/1/type/book/form
+    
   * type server: http://localhost:8083
     * list all types: http://localhost:8083/repository/1/types
     * show a type: http://localhost:8083/repository/1/type/{typeId}
     * show the book type: http://localhost:8083/repository/1/type/book
+    
   * document server: http://localhost:8087
     * list Docs: http://localhost:8087/repository/1/documents
+    * show book1234: http://localhost:8087/repository/1/document/book1234
+    
   * admin server: http://localhost:8088
     * edit book type: http://localhost:8088/repository/1/type/book/update
     * new type: http://localhost:8088/repository/1/type/insert
+    
   * solr: http://localhost:8983/solr
 
 ## Reset Database

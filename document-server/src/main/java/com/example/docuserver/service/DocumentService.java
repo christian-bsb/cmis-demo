@@ -21,8 +21,7 @@ public class DocumentService {
   }
 
   public Document getDocumentById(String documentId) {
-    // CmisDoc cmisDoc = dtoService.documentToCmisDoc(document);
-    CmisDoc cmisDoc = cmisDocRepository.findById(decorate(documentId)).get();
+    CmisDoc cmisDoc = cmisDocRepository.findById(documentId).get();
     return dtoService.cmisDocToDocument(cmisDoc);
   }
 
@@ -30,9 +29,5 @@ public class DocumentService {
     CmisDoc cmisDoc = dtoService.documentToCmisDoc(document);
     CmisDoc saved = cmisDocRepository.save(cmisDoc);
     return dtoService.cmisDocToDocument(saved);
-  }
-
-  String decorate(String value) {
-    return "[" + value + "]";
   }
 }
