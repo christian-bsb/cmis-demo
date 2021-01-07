@@ -52,7 +52,7 @@ public class FormController {
       throws Exception {
 
     Document document = documentRepository.getDocument(repositoryId, documentId);
-    System.out.println("*********** " + document);
+    // System.out.println("*********** " + document);
 
     String typeId = "book";
     ObjectType objectType = typeDefinitionRepository.getTypeDefinition(typeId);
@@ -83,13 +83,12 @@ public class FormController {
     System.out.println("****** " + parameterMap);
     Document document = new Document();
 
+    PropertyDefinition propTypeId =
+        new PropertyDefinition("typeId", "typeId", PropertyType.STRING, Cardinality.SINGLE);
+    document.getProperties().add(new CmisProperty(propTypeId, typeId));
+
     for (Entry<String, String[]> entry : parameterMap.entrySet()) {
       System.out.println(entry.getKey() + " = " + Arrays.toString(entry.getValue()));
-      /*if ("id".equals(entry.getKey())) {
-        PropertyDefinition iddef =
-            new PropertyDefinition("id", "id", PropertyType.STRING, Cardinality.SINGLE);
-        document.getProperties().add(new CmisProperty(iddef, entry.getValue()));
-      }*/
       PropertyDefinition propDef =
           new PropertyDefinition(
               entry.getKey(), entry.getKey(), PropertyType.STRING, Cardinality.SINGLE);
