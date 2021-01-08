@@ -38,6 +38,12 @@ drop table werk cascade;
 drop table obj_definition cascade;
 drop table property_definition cascade;
 
+## Solr
+* commit: curl "http://localhost:8983/solr/gettingstarted/update?commit=true"
+* delete: curl "http://localhost:8983/solr/gettingstarted/update?commit=true" -H "Content-Type: text/xml" --data-binary '<delete><query>*:*</query></delete>'
+
+
+
 
 ## selects
 

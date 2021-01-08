@@ -32,8 +32,10 @@ public class DtoService {
     CmisDoc cmisDoc = new CmisDoc();
     cmisDoc.setId("undefined");
     for (CmisProperty cmisProperty : document.getProperties()) {
-      if (cmisProperty.getDefinition().getDisplayName().equals("id")) {
+      if (cmisProperty.getDefinition().getPropertyId().equals("id")) {
         cmisDoc.setId(cmisProperty.getValue().toString());
+      } else if (cmisProperty.getDefinition().getPropertyId().equals("typeId")) {
+        cmisDoc.setTypeId(cmisProperty.getValue().toString());
       } else {
         cmisDoc
             .getTextMap()

@@ -12,6 +12,8 @@ public class CmisDoc {
 
   @Id @Indexed private String id;
 
+  @Indexed private String typeId;
+
   // private @Field("*_t") Map<String, List<String>> textMap;
   private @Field("*_t") Map<String, String> textMap = new HashMap<>();
 
@@ -23,6 +25,14 @@ public class CmisDoc {
 
   public void setId(String id) {
     this.id = id;
+  }
+
+  public String getTypeId() {
+    return typeId;
+  }
+
+  public void setTypeId(String typeId) {
+    this.typeId = typeId;
   }
 
   public Map<String, String> getTextMap() {
