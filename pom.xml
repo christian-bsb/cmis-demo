@@ -10,6 +10,7 @@
   <name>CMIS Demo</name>
 
   <modules>
+    <module>eureka-server</module>
     <module>cmis-model</module>
     <module>cmis-services</module>
     <module>cmis-client</module>
