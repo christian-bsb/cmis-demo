@@ -1,13 +1,7 @@
 package com.example.client.infoparser;
 
 import com.example.client.infoparser.service.CmisClientService;
-import com.example.cmisdemo.model.Cardinality;
-import com.example.cmisdemo.model.CmisProperty;
-import com.example.cmisdemo.model.Document;
-import com.example.cmisdemo.model.Folder;
-import com.example.cmisdemo.model.ObjectType;
-import com.example.cmisdemo.model.PropertyDefinition;
-import com.example.cmisdemo.model.PropertyType;
+import com.example.cmisdemo.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +55,7 @@ public class Application implements CommandLineRunner {
     // properties.put(Constants.PARAM_PATH, "exampeDoc.txt");
 
     PropertyDefinition iddef =
-        new PropertyDefinition("id", "id", PropertyType.STRING, Cardinality.SINGLE);
+        new PropertyDefinition("id", "id", Constants.OBJECTTYPE_STRING, Cardinality.SINGLE);
     Document document = new Document();
     document.getProperties().add(new CmisProperty(iddef, "id:777"));
 
@@ -72,10 +66,11 @@ public class Application implements CommandLineRunner {
     ObjectType objectType = new ObjectType(null, "News");
     objectType
         .getPropertyDefinitions()
-        .add(new PropertyDefinition(null, "title", PropertyType.STRING, Cardinality.SINGLE));
+        .add(
+            new PropertyDefinition(null, "title", Constants.OBJECTTYPE_STRING, Cardinality.SINGLE));
     objectType
         .getPropertyDefinitions()
-        .add(new PropertyDefinition(null, "text", PropertyType.HTML, Cardinality.SINGLE));
+        .add(new PropertyDefinition(null, "text", Constants.OBJECTTYPE_STRING, Cardinality.SINGLE));
     cmisClientService.createObjectType("1", objectType);
     return objectType;
   }

@@ -55,7 +55,7 @@ public class ObjectDefinitionEntitiyToObjDefE {
   public PropertyDefinitionEntity propDefEToPropDefE(
       PropertyDefinitionEntity source, PropertyDefinitionEntity target) {
     target.setName(source.getName());
-    target.setPropertyType(source.getPropertyType());
+    target.setTypeId(source.getTypeId());
     target.setCardinality(source.getCardinality());
     return target;
   }

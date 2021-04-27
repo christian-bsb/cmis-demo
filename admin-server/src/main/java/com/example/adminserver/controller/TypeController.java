@@ -89,7 +89,7 @@ public class TypeController {
     if (objectType != null) {
       objectType
           .getPropertyDefinitions()
-          .add(new PropertyDefinition(id, dn, PropertyType.STRING, Cardinality.SINGLE));
+          .add(new PropertyDefinition(id, dn, Constants.OBJECTTYPE_STRING, Cardinality.SINGLE));
       typeDefinitionRepository.updateType(objectType);
     }
 

@@ -4,16 +4,15 @@ public class PropertyDefinition {
 
   String propertyId = "";
   String displayName = "";
-  PropertyType propertyType = PropertyType.STRING;
+  String typeId = Constants.OBJECTTYPE_STRING;
   Cardinality cardinality = Cardinality.SINGLE;
 
   public PropertyDefinition() {}
 
-  public PropertyDefinition(
-      String id, String displayName, PropertyType propertyType, Cardinality cardinality) {
+  public PropertyDefinition(String id, String displayName, String typeId, Cardinality cardinality) {
     this.propertyId = id;
     this.displayName = displayName;
-    this.propertyType = propertyType;
+    this.typeId = typeId;
     this.cardinality = cardinality;
   }
 
@@ -33,14 +32,6 @@ public class PropertyDefinition {
     this.displayName = displayName;
   }
 
-  public PropertyType getPropertyType() {
-    return propertyType;
-  }
-
-  public void setPropertyType(PropertyType propertyType) {
-    this.propertyType = propertyType;
-  }
-
   public Cardinality getCardinality() {
     return cardinality;
   }
@@ -49,19 +40,11 @@ public class PropertyDefinition {
     this.cardinality = cardinality;
   }
 
-  @Override
-  public String toString() {
-    return "PropertyDefinition{"
-        + "id='"
-        + propertyId
-        + '\''
-        + ", displayName='"
-        + displayName
-        + '\''
-        + ", propertyType="
-        + propertyType
-        + ", cardinality="
-        + cardinality
-        + '}';
+  public String getTypeId() {
+    return typeId;
+  }
+
+  public void setTypeId(String typeId) {
+    this.typeId = typeId;
   }
 }

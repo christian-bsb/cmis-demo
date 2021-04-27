@@ -9,5 +9,6 @@ public enum PropertyType {
   ID,
   INTEGER,
   STRING,
-  URI
+  URI,
+  OBJECT
 }

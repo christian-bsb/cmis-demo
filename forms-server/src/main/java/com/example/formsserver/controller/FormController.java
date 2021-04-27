@@ -29,7 +29,7 @@ public class FormController {
     ObjectType objectType = typeDefinitionRepository.getTypeDefinition(typeId);
 
     PropertyDefinition iddef =
-        new PropertyDefinition("id", "id", PropertyType.STRING, Cardinality.SINGLE);
+        new PropertyDefinition("id", "id", Constants.OBJECTTYPE_STRING, Cardinality.SINGLE);
     Document document = new Document();
     document.getProperties().add(new CmisProperty(iddef, "id:777"));
 
@@ -58,7 +58,7 @@ public class FormController {
     ObjectType objectType = typeDefinitionRepository.getTypeDefinition(typeId);
 
     PropertyDefinition iddef =
-        new PropertyDefinition("id", "id", PropertyType.STRING, Cardinality.SINGLE);
+        new PropertyDefinition("id", "id", Constants.OBJECTTYPE_STRING, Cardinality.SINGLE);
 
     FormBean formBean = new FormBean();
     formBean.setTypeId(objectType.getTypeId());
@@ -84,14 +84,14 @@ public class FormController {
     Document document = new Document();
 
     PropertyDefinition propTypeId =
-        new PropertyDefinition("typeId", "typeId", PropertyType.STRING, Cardinality.SINGLE);
+        new PropertyDefinition("typeId", "typeId", Constants.OBJECTTYPE_STRING, Cardinality.SINGLE);
     document.getProperties().add(new CmisProperty(propTypeId, typeId));
 
     for (Entry<String, String[]> entry : parameterMap.entrySet()) {
       System.out.println(entry.getKey() + " = " + Arrays.toString(entry.getValue()));
       PropertyDefinition propDef =
           new PropertyDefinition(
-              entry.getKey(), entry.getKey(), PropertyType.STRING, Cardinality.SINGLE);
+              entry.getKey(), entry.getKey(), Constants.OBJECTTYPE_STRING, Cardinality.SINGLE);
       if (entry.getValue().length == 1) {
         document.getProperties().add(new CmisProperty(propDef, entry.getValue()[0]));
       }

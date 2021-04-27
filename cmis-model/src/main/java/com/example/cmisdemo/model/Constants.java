@@ -24,6 +24,12 @@ package com.example.cmisdemo.model;
 @SuppressWarnings("PMD.AvoidDuplicateLiterals")
 public final class Constants {
 
+  // standard types
+  public static final String OBJECTTYPE_STRING = "string";
+  public static final String OBJECTTYPE_INTEGER = "integer";
+  public static final String OBJECTTYPE_DATE = "date";
+  public static final String OBJECTTYPE_BOOLEAN = "boolean";
+
   // media types
   public static final String MEDIATYPE_SERVICE = "application/atomsvc+xml";
   public static final String MEDIATYPE_FEED = "application/atom+xml;type=feed";

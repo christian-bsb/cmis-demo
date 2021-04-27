@@ -53,7 +53,7 @@ public class ObjectDefinitionDto {
     propDefE.setName(propDef.getDisplayName());
     propDefE.setObjectDefinition(objDefE);
     propDefE.setCardinality(propDef.getCardinality());
-    propDefE.setPropertyType(propDef.getPropertyType());
+    propDefE.setTypeId(propDef.getTypeId());
     return propDefE;
   }
 
@@ -62,7 +62,7 @@ public class ObjectDefinitionDto {
     propDef.setPropertyId(propDefE.getPropertyId());
     propDef.setDisplayName(propDefE.getName());
     propDef.setCardinality(propDefE.getCardinality());
-    propDef.setPropertyType(propDefE.getPropertyType());
+    propDef.setTypeId(propDefE.getTypeId());
     return propDef;
   }
 }

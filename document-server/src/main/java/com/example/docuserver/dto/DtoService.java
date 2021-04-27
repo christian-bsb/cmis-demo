@@ -1,10 +1,6 @@
 package com.example.docuserver.dto;
 
-import com.example.cmisdemo.model.Cardinality;
-import com.example.cmisdemo.model.CmisProperty;
-import com.example.cmisdemo.model.Document;
-import com.example.cmisdemo.model.PropertyDefinition;
-import com.example.cmisdemo.model.PropertyType;
+import com.example.cmisdemo.model.*;
 import com.example.docuserver.model.CmisDoc;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,7 +16,7 @@ public class DtoService {
   public Document cmisDocToDocument(CmisDoc cmisDoc) {
     // todo get type
     PropertyDefinition iddef =
-        new PropertyDefinition("id", "id", PropertyType.STRING, Cardinality.SINGLE);
+        new PropertyDefinition("id", "id", Constants.OBJECTTYPE_STRING, Cardinality.SINGLE);
 
     Document document = new Document();
     document.getProperties().add(new CmisProperty(iddef, cmisDoc.getId()));
