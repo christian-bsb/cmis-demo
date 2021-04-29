@@ -46,13 +46,20 @@
                 <div class="form-group">
                     <label for="idInput">Property Id</label>
                     <input type="text" class="form-control" id="idInput" name="id" aria-describedby="idHelp"
-                           placeholder="Enter type id">
+                           placeholder="Enter property id">
                     <small id="idHelp" class="form-text text-muted">Eindeutige sprechende id fuer die Property z.B.
                         autor</small>
                 </div>
                 <div class="form-group">
                     <label for="displayNameInput">display name</label>
                     <input type="text" class="form-control" id="displayNameInput" name="dn" placeholder="display name">
+                </div>
+                <div class="form-group">
+                    <label for="idInput">Type Id</label>
+                    <input type="text" class="form-control" id="propTypeIdInput" name="propTypeId" aria-describedby="propTypeIdHelp"
+                           placeholder="Enter type id">
+                    <small id="propTypeIdHelp" class="form-text text-muted">Eindeutige sprechende id fuer den Type der Property z.B.
+                    ort</small>
                 </div>
                 <button type="submit" class="btn btn-primary" th:formaction="@{${updatePath}}">Update</button>
                 <button type="submit" class="btn btn-primary" th:formaction="@{${deletePath}}">Delete</button>

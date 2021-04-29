@@ -76,10 +76,19 @@ public class TypeController {
       @PathVariable String typeId,
       @RequestParam String id,
       @RequestParam String dn,
+      @RequestParam String propTypeId,
       Model model)
       throws Exception {
 
-    LOGGER.info("repository: update " + repositoryId + "type: " + typeId + " add property: " + id);
+    LOGGER.info(
+        "repository: update "
+            + repositoryId
+            + "type: "
+            + typeId
+            + " add property: "
+            + id
+            + " propTypeId: "
+            + propTypeId);
 
     model.addAttribute("repositoryId", repositoryId);
     model.addAttribute("typeId", typeId);
@@ -89,7 +98,7 @@ public class TypeController {
     if (objectType != null) {
       objectType
           .getPropertyDefinitions()
-          .add(new PropertyDefinition(id, dn, Constants.OBJECTTYPE_STRING, Cardinality.SINGLE));
+          .add(new PropertyDefinition(id, dn, propTypeId, Cardinality.SINGLE));
       typeDefinitionRepository.updateType(objectType);
     }
 
