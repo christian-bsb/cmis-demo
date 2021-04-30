@@ -14,4 +14,8 @@ public class DocumentService {
       throws Exception {
     return documentRepository.createDocument(document);
   }
+
+  public Document getDocument(String repositoryId, String documentId) throws Exception {
+    return documentRepository.getDocument(repositoryId, documentId);
+  }
 }

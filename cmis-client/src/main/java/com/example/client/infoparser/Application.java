@@ -36,8 +36,9 @@ public class Application implements CommandLineRunner {
     */
     // createFolder();
 
-    String documentId = createDocument();
-    LOGGER.info("document id =" + documentId);
+    // String documentId = createDocument();
+    Document person = getDocument("person_1");
+    LOGGER.info("document id =" + person);
   }
 
   void createFolder() throws Exception {
@@ -60,6 +61,10 @@ public class Application implements CommandLineRunner {
     document.getProperties().add(new CmisProperty(iddef, "id:777"));
 
     return cmisClientService.createDocument("1", "1", document);
+  }
+
+  public Document getDocument(String id) throws Exception {
+    return cmisClientService.getDocument(id);
   }
 
   public ObjectType createObjectType() throws Exception {

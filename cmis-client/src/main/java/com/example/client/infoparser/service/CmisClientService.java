@@ -65,6 +65,10 @@ public class CmisClientService {
     return documentRepository.createDocument(document);
   }
 
+  public Document getDocument(String id) throws Exception {
+    return documentRepository.getDocument("1", id);
+  }
+
   HttpResponse<String> sendPostRequest(String url, String json) throws Exception {
     HttpClient httpClient = HttpClient.newBuilder().version(Version.HTTP_2).build();
 
