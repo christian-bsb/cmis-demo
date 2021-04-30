@@ -2,6 +2,8 @@ package com.example.client.infoparser;
 
 import com.example.client.infoparser.service.CmisClientService;
 import com.example.cmisdemo.model.*;
+import example.com.cmisservices.model.DocumentProxy;
+import example.com.cmisservices.repository.DocumentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,8 @@ public class Application implements CommandLineRunner {
   private static final Logger LOGGER = LoggerFactory.getLogger(Application.class);
 
   @Autowired CmisClientService cmisClientService;
+
+  @Autowired DocumentRepository documentRepository;
 
   public static void main(String[] args) throws Exception {
     SpringApplication.run(Application.class, args);
@@ -38,7 +42,13 @@ public class Application implements CommandLineRunner {
 
     // String documentId = createDocument();
     Document person = getDocument("person_1");
-    LOGGER.info("document id =" + person);
+    LOGGER.info("document =" + person);
+
+    DocumentProxy proxy = new DocumentProxy(person, documentRepository);
+    LOGGER.info("proxy =" + proxy);
+
+    Object ort = proxy.getProperty("geburtsort");
+    LOGGER.info("geburtsort =" + ort);
   }
 
   void createFolder() throws Exception {
